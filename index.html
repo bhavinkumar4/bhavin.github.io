@@ -245,12 +245,30 @@ button.send{
   <img src="https://logo.clearbit.com/oracle.com">
 </section>
 
-<section class="contact">
+<section id="contact">
+  <h2>Contact Me</h2>
+
   <form action="https://formspree.io/f/mwvnddkd" method="POST" class="contact-form">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Message"></textarea>
-    <button class="send">Send</button>
+
+    <div class="input-group">
+      <input type="text" name="name" required>
+      <label>Name</label>
+    </div>
+
+    <div class="input-group">
+      <input type="email" name="email" required>
+      <label>Email</label>
+    </div>
+
+    <div class="input-group">
+      <textarea name="message" rows="4" required></textarea>
+      <label>Message</label>
+    </div>
+
+    <input type="hidden" name="_subject" value="New Portfolio Message 🚀">
+
+    <button type="submit" class="send-btn">Send Message</button>
+
   </form>
 </section>
 
@@ -282,3 +300,4 @@ window.onload=()=>{
 
 </body>
 </html>
+
