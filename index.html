@@ -1,235 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Bhavin Kumar | Oracle Fusion HCM Consultant</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Briefcase, Folder, User, Code } from "lucide-react";
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+export default function Portfolio() {
+  const [hovered, setHovered] = useState(null);
 
-<style>
-* {margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 80 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  };
 
-body {
-  background:#0a0a0a;
-  color:#fff;
-  overflow-x:hidden;
-}
+  return (
+    <div className="bg-black text-white min-h-screen font-sans">
 
-/* BRIGHT PREMIUM BACKGROUND */
-body::before {
-  content:"";
-  position:fixed;
-  width:200%;
-  height:200%;
-  background:
-    radial-gradient(circle at 20% 30%, #0071e3, transparent),
-    radial-gradient(circle at 80% 60%, #00c6ff, transparent),
-    radial-gradient(circle at 50% 80%, #5f9cff, transparent);
-  animation:moveBg 12s infinite alternate;
-  z-index:-1;
-}
+      {/* HERO WITH COVER */}
+      <div className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+          className="absolute w-full h-full object-cover opacity-30"
+        />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}>
+          <h1 className="text-6xl font-bold tracking-tight">Bhavin Kumar</h1>
+          <p className="mt-4 text-xl text-gray-300">Oracle Fusion HCM Consultant</p>
+        </motion.div>
+      </div>
 
-@keyframes moveBg {
-  0% {transform:translate(0,0);}
-  100% {transform:translate(-20%,-20%);}
-}
+      {/* PROFILE */}
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        className="max-w-5xl mx-auto px-6 py-16"
+      >
+        <div className="flex items-center gap-3 mb-4">
+          <User />
+          <h2 className="text-3xl font-semibold">Profile</h2>
+        </div>
+        <p className="text-gray-400 leading-relaxed">
+          Oracle Fusion HCM professional supporting multiple cloud implementations, specializing in OTBI, BIP reports, Redwood UI, and production support. Proven ability to resolve complex issues, collaborate with clients, and deliver scalable HR solutions.
+        </p>
+      </motion.section>
 
-/* NAV */
-nav {
-  position:fixed;
-  width:100%;
-  padding:20px 60px;
-  backdrop-filter:blur(20px);
-  background:rgba(0,0,0,0.3);
-}
+      {/* EXPERIENCE HOVER */}
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        className="max-w-5xl mx-auto px-6 py-16"
+      >
+        <div className="flex items-center gap-3 mb-8">
+          <Briefcase />
+          <h2 className="text-3xl font-semibold">Experience</h2>
+        </div>
 
-/* HERO */
-.hero {
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:0 80px;
-}
+        {[{
+          title: "Oracle India Pvt Ltd",
+          content: `
+• Delivered 20+ OTBI & BIP reports improving reporting efficiency
+• Led Redwood UI implementation improving UX adoption
+• Reduced regression defects via structured testing
+• Handled Payroll & Compensation tickets with SR coordination
+• Conducted client workshops & requirement sessions
+          `
+        }, {
+          title: "IBM India Pvt Ltd",
+          content: `
+• Resolved high-volume production tickets
+• Improved reporting through custom PS queries
+• Delivered documentation for fixes & enhancements
+          `
+        }].map((item, i) => (
+          <div
+            key={i}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+            className="mb-6 p-6 rounded-2xl bg-white/5 backdrop-blur-lg transition"
+          >
+            <h3 className="text-xl font-medium">{item.title}</h3>
+            {hovered === i && (
+              <motion.pre
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-gray-400 mt-4 whitespace-pre-wrap"
+              >
+                {item.content}
+              </motion.pre>
+            )}
+          </div>
+        ))}
+      </motion.section>
 
-.hero h1 {
-  font-size:60px;
-  background:linear-gradient(270deg,#fff,#aaa,#fff);
-  background-size:400%;
-  animation:shine 6s infinite;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+      {/* PROJECTS CASE STUDY */}
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        className="max-w-5xl mx-auto px-6 py-16"
+      >
+        <div className="flex items-center gap-3 mb-8">
+          <Folder />
+          <h2 className="text-3xl font-semibold">Projects</h2>
+        </div>
 
-@keyframes shine {
-  0%{background-position:0%}
-  50%{background-position:100%}
-  100%{background-position:0%}
-}
+        {[{
+          title: "LLUH Cloud",
+          content: `
+Problem: Inefficient reporting & payroll issues
+Solution: Built OTBI/BIP reports + SR handling
+Impact: Faster reporting + improved client satisfaction
+          `
+        }, {
+          title: "Just Energy",
+          content: `
+Problem: Legacy UI & manual processes
+Solution: Implemented Redwood + VBCS
+Impact: Modern UX + improved usability
+          `
+        }].map((item, i) => (
+          <div
+            key={i}
+            onMouseEnter={() => setHovered("p" + i)}
+            onMouseLeave={() => setHovered(null)}
+            className="mb-6 p-6 rounded-2xl bg-white/5 backdrop-blur-lg"
+          >
+            <h3 className="text-xl font-medium">{item.title}</h3>
+            {hovered === "p" + i && (
+              <motion.pre
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-gray-400 mt-4 whitespace-pre-wrap"
+              >
+                {item.content}
+              </motion.pre>
+            )}
+          </div>
+        ))}
+      </motion.section>
 
-.hero p {margin-top:20px;color:#bbb;max-width:600px;}
+      {/* SKILLS */}
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        className="max-w-5xl mx-auto px-6 py-16"
+      >
+        <div className="flex items-center gap-3 mb-6">
+          <Code />
+          <h2 className="text-3xl font-semibold">Skills</h2>
+        </div>
+        <div className="grid grid-cols-2 gap-4 text-gray-300">
+          <p>Fusion HCM (OTBI, BIP, HDL)</p>
+          <p>Redwood UI & VBCS</p>
+          <p>PeopleSoft (PeopleCode, SQR)</p>
+          <p>SQL & Reporting</p>
+        </div>
+      </motion.section>
 
-.btn {
-  margin-top:30px;
-  padding:14px 30px;
-  border:none;
-  border-radius:999px;
-  background:linear-gradient(135deg,#0071e3,#00c6ff);
-  cursor:pointer;
-}
-
-/* SECTION */
-.section {
-  padding:100px 80px;
-}
-
-/* CARDS */
-.cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-}
-
-.card {
-  padding:25px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(20px);
-  transition:.4s;
-}
-
-.card:hover {transform:translateY(-10px) scale(1.03);}
-
-/* HEADINGS */
-h2 {margin-bottom:30px;font-size:32px;}
-
-ul {padding-left:20px;color:#ccc;}
-li {margin-bottom:10px;}
-
-footer {text-align:center;padding:40px;color:#777;}
-</style>
-</head>
-
-<body>
-
-<nav>
-  <h3>Bhavin Kumar</h3>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <h1>Oracle Fusion HCM Consultant</h1>
-  <h1>Reports • Redwood • HSDL • Payroll</h1>
-
-  <p>
-    Delivering enterprise-grade HCM solutions, automating workflows, and building impactful reporting systems across Oracle Fusion Cloud.
-  </p>
-
-  <button class="btn" onclick="document.getElementById('projects').scrollIntoView()">View My Work</button>
-</section>
-
-<!-- IMPACT -->
-<section class="section">
-  <div class="cards">
-    <div class="card">📊 Delivered 30+ OTBI & BI Reports</div>
-    <div class="card">⚡ Resolved 100+ Production Tickets</div>
-    <div class="card">🚀 Led Regression Testing (24C–25B)</div>
-    <div class="card">🎯 Improved Reporting Efficiency</div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="section">
-  <h2>Work Experience</h2>
-
-  <div class="card">
-    <h3>Oracle India Pvt Ltd — Analyst (2022–Present)</h3>
-    <ul>
-      <li>Delivered OTBI, BI reports & extracts based on client requirements</li>
-      <li>Implemented Redwood UI & VBCS customizations</li>
-      <li>Led regression testing and patch validation (24C–25B)</li>
-      <li>Resolved payroll & compensation issues via Oracle SRs</li>
-      <li>Created HSDL templates and conducted client walkthroughs</li>
-      <li>Collaborated with clients ensuring high satisfaction</li>
-    </ul>
-  </div>
-
-  <div class="card" style="margin-top:20px;">
-    <h3>IBM India Pvt Ltd — Associate Consultant (2019–2022)</h3>
-    <ul>
-      <li>Provided production support for HCM 9.2</li>
-      <li>Resolved tickets and communicated with end users</li>
-      <li>Developed reports and documentation</li>
-    </ul>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section class="section" id="projects">
-  <h2>Key Projects</h2>
-
-  <div class="cards">
-    <div class="card">
-      <h3>LLUH (Fusion)</h3>
-      <p>Reports, payroll tickets, Oracle SR coordination, HSDL updates.</p>
+      <footer className="text-center py-10 text-gray-500">
+        © 2026 Bhavin Kumar
+      </footer>
     </div>
-
-    <div class="card">
-      <h3>Just Energy</h3>
-      <p>Redwood UI, VBCS deployment, regression testing leadership.</p>
-    </div>
-
-    <div class="card">
-      <h3>PeopleSoft Projects</h3>
-      <p>Upgrades, retrofits, PeopleCode, and production support.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section class="section">
-  <h2>Skills</h2>
-  <div class="cards">
-    <div class="card">OTBI / BI Publisher</div>
-    <div class="card">HSDL / HDL</div>
-    <div class="card">Fast Formula</div>
-    <div class="card">Redwood UI</div>
-    <div class="card">VBCS</div>
-    <div class="card">PeopleSoft (PeopleCode, SQR)</div>
-  </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section class="section">
-  <h2>Certifications</h2>
-  <div class="card">
-    <ul>
-      <li>OCI AI Foundations Associate (2023)</li>
-      <li>Oracle Global HR Cloud Certified</li>
-      <li>Oracle Absence Management Certified</li>
-    </ul>
-  </div>
-</section>
-
-<!-- EDUCATION -->
-<section class="section">
-  <h2>Education</h2>
-  <div class="card">
-    Bachelor of Engineering — CCC Institute of Technology & Management (2014–2017)
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" style="text-align:center;">
-  <h2>Contact</h2>
-  <p>Email: your.email@gmail.com</p>
-  <p>LinkedIn: linkedin.com/in/yourprofile</p>
-</section>
-
-<footer>
-  © 2026 Bhavin Kumar • Built with precision
-</footer>
-
-</body>
-</html>
+  );
+}
