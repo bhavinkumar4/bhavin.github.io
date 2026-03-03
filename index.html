@@ -1,284 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhavin | Oracle HCM Developer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhavin | Oracle HCM Architect</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-<style>
-:root {
-  --bg: #0a0a0a;
-  --text: #ffffff;
-  --accent: linear-gradient(135deg, #7f5af0, #2cb67d);
-}
+    <style>
+        :root {
+            --bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --text: #ffffff;
+            --primary: #7f5af0;
+            --secondary: #2cb67d;
+            --accent: linear-gradient(135deg, #7f5af0, #2cb67d);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
 
-body.light {
-  --bg: #f5f5f5;
-  --text: #111;
-}
+        body.light {
+            --bg: #f8f9fa;
+            --card-bg: rgba(0, 0, 0, 0.02);
+            --text: #1a1a1a;
+            --glass-border: rgba(0, 0, 0, 0.1);
+        }
 
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: 0.4s;
-}
+        * { box-sizing: border-box; }
 
-/* NAV */
-nav {
-  position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  backdrop-filter: blur(20px);
-}
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.5s ease;
+            overflow-x: hidden;
+        }
 
-.toggle { cursor:pointer; }
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 10%;
-  background: radial-gradient(circle at top, #1a1a2e, #000);
-}
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        .toggle { font-size: 1.5rem; cursor: pointer; transition: transform 0.3s; }
+        .toggle:hover { transform: rotate(15deg) scale(1.1); }
 
-.hero h2 {
-  font-size: 55px;
-  background: var(--accent);
-  -webkit-background-clip: text;
-  color: transparent;
-}
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            position: relative;
+            background: radial-gradient(circle at 80% 20%, rgba(127, 90, 240, 0.15), transparent),
+                        radial-gradient(circle at 20% 80%, rgba(44, 182, 125, 0.1), transparent);
+        }
 
-/* SECTION */
-.section {
-  padding: 80px 10%;
-}
+        .hero h2 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin: 0;
+            font-weight: 800;
+            line-height: 1.1;
+        }
 
-/* CARDS */
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 20px;
-  margin: 20px 0;
-  transition: .3s;
-}
-.card:hover { transform: scale(1.03); }
+        .gradient-text {
+            background: var(--accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* PROJECT */
-.projects {
-  background: linear-gradient(135deg, #0f2027, #203a43);
-}
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            opacity: 0.8;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
 
-/* EXPERIENCE */
-.experience {
-  background: linear-gradient(135deg, #141e30, #243b55);
-}
+        /* --- SECTIONS --- */
+        .section { padding: 100px 10%; }
+        h2.section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        h2.section-title::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: var(--glass-border);
+        }
 
-/* CONTACT (🔥 PREMIUM COVER STYLE) */
-.contact {
-  position: relative;
-  background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a') center/cover no-repeat;
-}
+        /* --- EXPERIENCE CARDS --- */
+        .experience-grid {
+            display: grid;
+            gap: 30px;
+        }
 
-/* dark overlay */
-.contact::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-}
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
 
-/* content above overlay */
-.contact-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-}
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--accent);
+            opacity: 0;
+            transition: 0.3s;
+        }
 
-/* glass form */
-.contact-form {
-  width: 100%;
-  max-width: 500px;
-  backdrop-filter: blur(20px);
-  background: rgba(255,255,255,0.05);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
-}
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
 
-.contact h2 {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  margin-bottom: 30px;
-}
+        .card:hover::before { opacity: 1; }
 
-/* INPUT */
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: none;
-  background: rgba(255,255,255,0.08);
-  color: white;
-}
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(127, 90, 240, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
 
-/* BUTTON */
-button {
-  padding: 12px;
-  width: 100%;
-  background: var(--accent);
-  border: none;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-}
+        /* --- CONTACT SECTION (PREMIUM) --- */
+        .contact {
+            background: #000;
+            border-radius: 50px 50px 0 0;
+            margin-top: 50px;
+            padding: 100px 10%;
+        }
 
-/* POPUP */
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  background: #111;
-  padding: 30px;
-  border-radius: 20px;
-  transition: 0.4s;
-}
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
 
-.popup.active {
-  transform: translate(-50%, -50%) scale(1);
-}
-</style>
+        @media (max-width: 768px) {
+            .contact-container { grid-template-columns: 1fr; }
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            border-radius: 12px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        button.btn-premium {
+            background: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        button.btn-premium:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 10px 20px rgba(127, 90, 240, 0.3);
+        }
+
+        /* --- POPUP --- */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .popup-content {
+            background: #111;
+            padding: 50px;
+            border-radius: 30px;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid var(--primary);
+        }
+    </style>
 </head>
-
 <body>
 
 <nav>
-  <h2>Bhavin</h2>
-  <div class="toggle" onclick="toggleMode()">🌗</div>
+    <div class="logo">BHAVIN.</div>
+    <div class="toggle" onclick="toggleMode()">🌓</div>
 </nav>
 
 <section class="hero">
-  <h2 id="typing"></h2>
-  <p>Oracle Fusion HCM Analyst | Core HR | Payroll Management | Absence Management | Redwood | VBCS</p>
+    <h2 id="typing"></h2>
+    <p data-aos="fade-up" data-aos-delay="200">
+        Oracle Fusion HCM Architect specializing in Core HR, Payroll, and Redwood UI. 
+        Transforming enterprise data into seamless digital experiences.
+    </p>
 </section>
 
-<!-- EXPERIENCE -->
-<section class="section experience">
-<h2>Experience</h2>
-
-<div class="card">
-<h3>Oracle India Pvt Ltd (2022 - Present)</h3>
-<p>
-• LOMA LINDA UNIVERSITY HEALTH & Just Energy Cloud Projects  
-• OTBI, BIP Reports, HDL/HSDL  
-• Redwood UI + VBCS  
-• Regression Testing + Patch Updates (24C–25B)  
-• Client Calls + SR Handling  
-</p>
-</div>
-
-<div class="card">
-<h3>IBM India Pvt Ltd (2019 - 2022)</h3>
-<p>
-• PeopleSoft HCM 9.2 Support  
-• PS Query, SQR Reports  
-• Ticket Resolution + Documentation  
-</p>
-</div>
-
+<section class="section">
+    <h2 class="section-title" data-aos="fade-right">Professional Journey</h2>
+    <div class="experience-grid">
+        <div class="card" data-aos="fade-up">
+            <span class="tag">Present</span>
+            <h3>Oracle India Pvt Ltd</h3>
+            <p>Cloud Lead for LLUH & Just Energy. Mastered Redwood UI, VBCS, and Automated Regression Testing (24C–25B).</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <span class="tag">2019 - 2022</span>
+            <h3>IBM India Pvt Ltd</h3>
+            <p>PeopleSoft HCM 9.2 Specialist. Managed complex SQR reporting and technical ticket lifecycles for global clients.</p>
+        </div>
+    </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="section projects">
-<h2>Projects</h2>
-
-<div class="card" onclick="openPopup()">
-<h3>LLUH Cloud Project</h3>
-<p>Reports + Payroll + Client Delivery</p>
-</div>
-
-<div class="card">
-<h3>Just Energy</h3>
-<p>Redwood + VBCS + Automation</p>
-</div>
-
-<div class="card">
-<h3>BJC Healthcare</h3>
-<p>PeopleSoft Upgrade</p>
-</div>
-
+<section class="section">
+    <h2 class="section-title" data-aos="fade-right">Featured Projects</h2>
+    <div class="experience-grid">
+        <div class="card" onclick="openPopup()" style="cursor: pointer;">
+            <h3>LLUH Cloud Migration</h3>
+            <p>Integrated complex Payroll systems with BIP/OTBI reporting. <b>Click to see impact.</b></p>
+        </div>
+        <div class="card">
+            <h3>Redwood Modernization</h3>
+            <p>Leveraged VBCS to automate UI workflows for Just Energy, reducing manual input by 40%.</p>
+        </div>
+    </div>
 </section>
 
-<!-- CONTACT -->
-<section class="section contact">
-<h2>Contact Me</h2>
-
-<div class="contact-content">
-
-<form action="https://formspree.io/f/mwvnddkd" method="POST" class="contact-form">
-
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="email" name="email" placeholder="Your Email" required>
-<textarea name="message" placeholder="Your Message"></textarea>
-
-<input type="hidden" name="_subject" value="Portfolio Message 🚀">
-
-<button type="submit">Send Message</button>
-
-</form>
-
-</div>
+<section class="contact">
+    <div class="contact-container">
+        <div>
+            <h2 style="font-size: 3rem; color: #fff;">Let's build the <span class="gradient-text">Future</span> of HR.</h2>
+            <p style="color: #aaa;">Currently accepting inquiries for Oracle HCM consulting and Redwood UI transitions.</p>
+        </div>
+        <form class="contact-form" action="https://formspree.io/f/mwvnddkd" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <textarea name="message" rows="4" placeholder="How can I help?"></textarea>
+            <button type="submit" class="btn-premium">Initiate Conversation</button>
+        </form>
+    </div>
 </section>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-<h2>Impact</h2>
-<p><b>Before:</b> Manual reporting delays</p>
-<p><b>After:</b> Automated reporting 🚀</p>
-<button onclick="closePopup()">Close</button>
+<div class="popup-overlay" id="popup">
+    <div class="popup-content">
+        <h2 class="gradient-text">Project Impact</h2>
+        <p>By transitioning from manual SQL reporting to automated OTBI dashboards, we reduced the monthly closing cycle from 5 days to 4 hours.</p>
+        <button class="btn-premium" onclick="closePopup()" style="width: auto;">Excellent</button>
+    </div>
 </div>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-function toggleMode(){
-  document.body.classList.toggle("light");
-  localStorage.setItem("theme",
-  document.body.classList.contains("light")?"light":"dark");
-}
+    AOS.init({ duration: 1000, once: true });
 
-if(localStorage.getItem("theme")==="light"){
-  document.body.classList.add("light");
-}
+    function toggleMode(){
+        document.body.classList.toggle("light");
+        localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+    }
 
-// typing
-const text="Hi, I'm Bhavin 🚀";
-let i=0;
-function type(){
- if(i<text.length){
-  document.getElementById("typing").innerHTML+=text.charAt(i);
-  i++;
-  setTimeout(type,50);
- }
-}
-type();
+    const text = "Architecting the Modern Workforce.";
+    let i = 0;
+    function type(){
+        if(i < text.length){
+            document.getElementById("typing").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 70);
+        }
+    }
+    window.onload = type;
 
-// popup
-function openPopup(){
- document.getElementById("popup").classList.add("active");
-}
-function closePopup(){
- document.getElementById("popup").classList.remove("active");
-}
+    function openPopup(){ document.getElementById("popup").style.display = "flex"; }
+    function closePopup(){ document.getElementById("popup").style.display = "none"; }
 </script>
 
 </body>
