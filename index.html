@@ -1,19 +1,21 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Briefcase, Folder, User, Code, Mail, MapPin } from "lucide-react";
+import { Briefcase, Folder, User, Mail, MapPin, Sun, Moon } from "lucide-react";
 
 export default function Portfolio() {
   const [hovered, setHovered] = useState(null);
+  const [dark, setDark] = useState(true);
+
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
 
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     let start = 0;
     const end = 40;
     const duration = 1500;
-    const incrementTime = 30;
-    const step = end / (duration / incrementTime);
+    const step = end / (duration / 30);
 
     const timer = setInterval(() => {
       start += step;
@@ -22,109 +24,153 @@ export default function Portfolio() {
         clearInterval(timer);
       }
       setCount(Math.floor(start));
-    }, incrementTime);
+    }, 30);
 
     return () => clearInterval(timer);
   }, []);
 
-  return (
-    <div className="bg-black text-white min-h-screen font-sans cursor-none">
+  const theme = dark ? "bg-black text-white" : "bg-white text-black";
 
-      {/* CUSTOM CURSOR */}
-      <div className="fixed w-4 h-4 bg-white rounded-full pointer-events-none mix-blend-difference z-50" id="cursor"></div>
+  return (
+    <div className={`${theme} min-h-screen font-sans transition duration-500`}>
 
       {/* NAVBAR */}
-      <div className="fixed top-0 w-full backdrop-blur-xl bg-black/30 z-50 flex justify-between px-10 py-5 border-b border-white/10">
-        <h1 className="font-semibold tracking-wide">Bhavin Kumar</h1>
-        <div className="flex gap-8 text-sm">
-          <a href="#profile" className="hover:text-white/70">Profile</a>
-          <a href="#experience" className="hover:text-white/70">Experience</a>
-          <a href="#projects" className="hover:text-white/70">Projects</a>
-          <a href="#contact" className="hover:text-white/70">Contact</a>
+      <div className="fixed top-0 w-full backdrop-blur-xl bg-opacity-30 z-50 flex justify-between px-4 md:px-10 py-4 border-b">
+        <h1 className="font-semibold">Bhavin Kumar</h1>
+
+        <div className="flex items-center gap-4 md:gap-8 text-sm">
+          <a href="#profile">Profile</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+
+          <button onClick={() => setDark(!dark)}>
+            {dark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
         </div>
       </div>
 
       {/* HERO */}
-      <motion.div style={{ scale }} className="relative h-[90vh] flex flex-col items-center justify-center text-center overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" className="absolute w-full h-full object-cover opacity-20" />
-        <h1 className="text-7xl font-bold">Bhavin Kumar</h1>
-        <p className="mt-4 text-xl text-gray-300">Oracle Fusion HCM Consultant</p>
-        <div className="flex items-center gap-2 mt-3 text-gray-400">
-          <MapPin size={16} /> Karnataka, India
+      <motion.div
+        style={{ scale }}
+        className="relative h-[80vh] flex flex-col items-center justify-center text-center px-4"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+          className="absolute w-full h-full object-cover opacity-20"
+        />
+
+        <h1 className="text-4xl md:text-7xl font-bold">Bhavin Kumar</h1>
+        <p className="mt-3 text-lg md:text-xl opacity-80">Oracle Fusion HCM Consultant</p>
+
+        <div className="flex items-center gap-2 mt-2 text-sm opacity-70">
+          <MapPin size={14} /> Karnataka, India
         </div>
-        <button className="mt-6 px-8 py-3 bg-white text-black rounded-full hover:scale-110 transition duration-300 shadow-lg">
+
+        <button className="mt-6 px-6 py-3 rounded-full bg-white text-black hover:scale-105 transition">
           Download Resume
         </button>
+
         <p className="mt-3 text-green-400 text-sm">● Available for Hire</p>
       </motion.div>
 
       {/* PROFILE */}
-      <section id="profile" className="max-w-5xl mx-auto px-6 py-24">
-        <div className="flex items-center gap-3 mb-6"><User /><h2 className="text-3xl">Profile</h2></div>
-        <p className="text-gray-400 leading-relaxed">
-          Oracle Fusion HCM consultant with strong experience in OTBI, BIP, Redwood UI, and production support. Proven track record of improving reporting efficiency, resolving critical issues, and delivering scalable HR solutions.
+      <section id="profile" className="max-w-5xl mx-auto px-4 md:px-6 py-16">
+        <div className="flex items-center gap-2 mb-4">
+          <User />
+          <h2 className="text-2xl md:text-3xl">Profile</h2>
+        </div>
+        <p className="opacity-70">
+          Oracle Fusion HCM consultant experienced in OTBI, BIP, Redwood UI, and production support. Focused on delivering scalable HR solutions and improving system efficiency.
         </p>
       </section>
 
       {/* EXPERIENCE */}
-      <section id="experience" className="max-w-5xl mx-auto px-6 py-24">
-        <div className="flex items-center gap-3 mb-8"><Briefcase /><h2 className="text-3xl">Experience</h2></div>
+      <section id="experience" className="max-w-5xl mx-auto px-4 md:px-6 py-16">
+        <div className="flex items-center gap-2 mb-6">
+          <Briefcase />
+          <h2 className="text-2xl md:text-3xl">Experience</h2>
+        </div>
+
         {[{
           title: "Oracle India Pvt Ltd",
-          content: `• Delivered 20+ reports improving efficiency by 40%\n• Led Redwood UI migration\n• Reduced regression defects\n• Client workshops & SR handling`
-        },{
+          content: `• Delivered 20+ reports improving efficiency by 40%\n• Led Redwood UI migration\n• Reduced regression defects\n• Client workshops`
+        }, {
           title: "IBM India Pvt Ltd",
-          content: `• Managed production support\n• Built custom reports\n• Improved system efficiency`
-        }].map((item,i)=>(
-          <div key={i} onMouseEnter={()=>setHovered(i)} onMouseLeave={()=>setHovered(null)} className="mb-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition backdrop-blur-lg">
-            <h3 className="text-xl">{item.title}</h3>
-            {hovered===i && <motion.pre initial={{opacity:0}} animate={{opacity:1}} className="text-gray-400 mt-4 whitespace-pre-wrap">{item.content}</motion.pre>}
+          content: `• Managed production support\n• Built custom reports\n• Improved efficiency`
+        }].map((item, i) => (
+          <div
+            key={i}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+            className="mb-4 p-4 rounded-xl bg-white/10 backdrop-blur"
+          >
+            <h3>{item.title}</h3>
+            {hovered === i && (
+              <motion.pre className="mt-2 text-sm opacity-70 whitespace-pre-wrap">
+                {item.content}
+              </motion.pre>
+            )}
           </div>
         ))}
       </section>
 
       {/* PROJECTS */}
-      <section id="projects" className="max-w-5xl mx-auto px-6 py-24">
-        <div className="flex items-center gap-3 mb-8"><Folder /><h2 className="text-3xl">Projects</h2></div>
+      <section id="projects" className="max-w-5xl mx-auto px-4 md:px-6 py-16">
+        <div className="flex items-center gap-2 mb-6">
+          <Folder />
+          <h2 className="text-2xl md:text-3xl">Projects</h2>
+        </div>
+
         {[{
-          title:"LLUH Cloud",
-          content:`Problem: Reporting inefficiency\nSolution: OTBI/BIP\nImpact: Faster decisions`
-        },{
-          title:"Just Energy",
-          content:`Problem: Legacy UI\nSolution: Redwood\nImpact: Better UX`
-        }].map((item,i)=>(
-          <div key={i} onMouseEnter={()=>setHovered("p"+i)} onMouseLeave={()=>setHovered(null)} className="mb-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-lg">
-            <h3 className="text-xl">{item.title}</h3>
-            {hovered==="p"+i && <motion.pre initial={{opacity:0}} animate={{opacity:1}} className="text-gray-400 mt-4 whitespace-pre-wrap">{item.content}</motion.pre>}
+          title: "LLUH Cloud",
+          content: `Problem → Reporting inefficiency\nSolution → OTBI/BIP\nImpact → Faster decisions`
+        }, {
+          title: "Just Energy",
+          content: `Problem → Legacy UI\nSolution → Redwood\nImpact → Better UX`
+        }].map((item, i) => (
+          <div
+            key={i}
+            onMouseEnter={() => setHovered("p" + i)}
+            onMouseLeave={() => setHovered(null)}
+            className="mb-4 p-4 rounded-xl bg-white/10 backdrop-blur"
+          >
+            <h3>{item.title}</h3>
+            {hovered === "p" + i && (
+              <motion.pre className="mt-2 text-sm opacity-70 whitespace-pre-wrap">
+                {item.content}
+              </motion.pre>
+            )}
           </div>
         ))}
       </section>
 
       {/* METRICS */}
-      <section className="max-w-5xl mx-auto px-6 py-24 grid grid-cols-3 gap-6 text-center">
-        <div><h3 className="text-5xl font-bold">20+</h3><p className="text-gray-400">Reports Delivered</p></div>
-        <div><h3 className="text-5xl font-bold">{count}%</h3><p className="text-gray-400">Efficiency Boost</p></div>
-        <div><h3 className="text-5xl font-bold">3+</h3><p className="text-gray-400">Cloud Projects</p></div>
+      <section className="max-w-5xl mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div>
+          <h3 className="text-3xl md:text-5xl font-bold">20+</h3>
+          <p className="opacity-70">Reports</p>
+        </div>
+        <div>
+          <h3 className="text-3xl md:text-5xl font-bold">{count}%</h3>
+          <p className="opacity-70">Efficiency</p>
+        </div>
+        <div>
+          <h3 className="text-3xl md:text-5xl font-bold">3+</h3>
+          <p className="opacity-70">Projects</p>
+        </div>
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="text-center py-24">
-        <Mail className="mx-auto mb-4" />
-        <h2 className="text-3xl mb-4">Let’s Work Together</h2>
-        <p className="text-gray-400">Open to Oracle HCM opportunities</p>
-        <button className="mt-6 px-8 py-3 bg-white text-black rounded-full hover:scale-110 transition shadow-lg">Contact Me</button>
+      <section id="contact" className="text-center py-16">
+        <Mail className="mx-auto mb-2" />
+        <h2 className="text-2xl md:text-3xl">Contact</h2>
+        <p className="opacity-70">Open for opportunities</p>
       </section>
 
-      <footer className="text-center py-6 text-gray-500">© 2026 Bhavin Kumar</footer>
-
-      {/* CURSOR SCRIPT */}
-      <script dangerouslySetInnerHTML={{__html: `
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-          cursor.style.top = e.clientY + 'px';
-          cursor.style.left = e.clientX + 'px';
-        });
-      `}} />
+      <footer className="text-center py-6 opacity-50">
+        © 2026 Bhavin Kumar
+      </footer>
 
     </div>
   );
