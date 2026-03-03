@@ -1,92 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bhavin Kumar G | Oracle Fusion HCM Analyst</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+<meta charset="UTF-8">
+<title>Bhavin | Ultra Premium</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* GLOW CURSOR */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: fixed;
+  background: rgba(0, 113, 227, 0.8);
+  box-shadow: 0 0 20px #0071e3, 0 0 40px #0071e3;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  width: 100%;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.03);
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 80px;
+}
+
+.hero h1 {
+  font-size: 72px;
+  background: linear-gradient(270deg, #fff, #888, #fff);
+  background-size: 400% 400%;
+  animation: gradientMove 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradientMove {
+  0% {background-position: 0%}
+  50% {background-position: 100%}
+  100% {background-position: 0%}
+}
+
+.hero p {
+  margin-top: 20px;
+  color: #aaa;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 30px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #0071e3, #00c6ff);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* SECTION */
+.section {
+  padding: 120px 80px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+footer {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+</style>
 </head>
-<body class="bg-gray-900 text-white font-sans scroll-smooth">
 
-  <!-- Navbar -->
-  <nav class="fixed w-full bg-gray-900/80 backdrop-blur-md p-4 flex justify-between items-center z-50">
-    <h1 class="font-bold text-lg">Bhavin Kumar G</h1>
-    <div class="space-x-6 text-gray-300">
-      <a href="#about" class="hover:text-white">About</a>
-      <a href="#skills" class="hover:text-white">Skills</a>
-      <a href="#projects" class="hover:text-white">Projects</a>
-      <a href="#contact" class="hover:text-white">Contact</a>
-    </div>
-  </nav>
+<body>
 
-  <!-- Hero Section -->
-  <section class="text-center py-32 px-6" id="about">
-    <h1 class="text-5xl md:text-7xl font-bold mb-6">Bhavin Kumar G</h1>
-    <p class="text-2xl text-gray-300">Oracle Fusion HCM Analyst</p>
-    <p class="mt-6 max-w-2xl mx-auto text-gray-400">
-      Delivering scalable HCM solutions using OTBI, BIP, Redwood UI, and HSDL. Passionate about solving real business problems and optimizing HR processes.
-    </p>
-    <div class="mt-8 space-x-4">
-      <a href="#contact" class="bg-white text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">Contact Me</a>
-      <a href="#projects" class="border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition">View Work</a>
-    </div>
-  </section>
+<div class="cursor"></div>
 
-  <!-- Skills -->
-  <section class="py-20 px-6" id="skills">
-    <h2 class="text-3xl font-semibold text-center mb-12">Skills</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-5xl mx-auto">
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">OTBI Reports</div>
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">BIP Reports</div>
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">HSDL / HDL</div>
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">Redwood UI</div>
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">VBCS</div>
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">PeopleSoft</div>
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">SQL / Reporting</div>
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">Production Support</div>
-    </div>
-  </section>
+<nav>
+  <h2>Bhavin</h2>
+</nav>
 
-  <!-- Projects -->
-  <section class="py-20 px-6" id="projects">
-    <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
-    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="text-xl font-bold">LLUH Cloud</h3>
-        <p class="text-gray-400 mt-3">Developed OTBI/BIP reports, handled payroll tickets, collaborated with clients, and delivered solutions on time.</p>
-      </div>
-      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-        <h3 class="text-xl font-bold">Just Energy</h3>
-        <p class="text-gray-400 mt-3">Implemented Redwood UI, VBCS customizations, and led regression testing and documentation.</p>
-      </div>
-    </div>
-  </section>
+<section class="hero">
+  <h1>Next-Level Digital Experience</h1>
+  <p>Premium UI. Smooth motion. Elite performance.</p>
+  <button class="btn">Explore</button>
+</section>
 
-  <!-- Experience -->
-  <section class="py-20 px-6 bg-gray-800">
-    <h2 class="text-3xl font-semibold text-center mb-12">Experience</h2>
-    <div class="max-w-4xl mx-auto space-y-8">
-      <div>
-        <h3 class="text-xl font-bold">Oracle India Pvt Ltd</h3>
-        <p class="text-gray-400">Analyst | 2022 - Present</p>
-      </div>
-      <div>
-        <h3 class="text-xl font-bold">IBM India Pvt Ltd</h3>
-        <p class="text-gray-400">Associate Consultant | 2019 - 2022</p>
-      </div>
-    </div>
-  </section>
+<section class="section">
+  <div class="cards">
+    <div class="card">⚡ Performance</div>
+    <div class="card">🎯 Precision</div>
+    <div class="card">🚀 Innovation</div>
+  </div>
+</section>
 
-  <!-- Contact -->
-  <section class="py-20 text-center" id="contact">
-    <h2 class="text-3xl font-semibold mb-6">Contact</h2>
-    <p class="text-gray-400">https://www.linkedin.com/in/bhavinkumarg/ and Email: bhavinkumar425@gmail.com here</p>
-  </section>
+<footer>
+  © 2026 Bhavin
+</footer>
 
-  <footer class="text-center py-6 text-gray-500">
-    © 2026 Bhavin Kumar G
-  </footer>
+<script>
+/* CUSTOM CURSOR */
+const cursor = document.querySelector(".cursor");
+document.addEventListener("mousemove", e => {
+  cursor.style.top = e.clientY + "px";
+  cursor.style.left = e.clientX + "px";
+});
+
+/* SCROLL REVEAL */
+const sections = document.querySelectorAll(".section");
+
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      sec.classList.add("show");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
