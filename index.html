@@ -1,164 +1,131 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Briefcase, Folder, User, Code } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Briefcase, Folder, User, Code, Mail, MapPin } from "lucide-react";
 
 export default function Portfolio() {
   const [hovered, setHovered] = useState(null);
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 80 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
-  };
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const end = 40;
+    const duration = 1500;
+    const incrementTime = 30;
+    const step = end / (duration / incrementTime);
+
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= end) {
+        start = end;
+        clearInterval(timer);
+      }
+      setCount(Math.floor(start));
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="bg-black text-white min-h-screen font-sans">
+    <div className="bg-black text-white min-h-screen font-sans cursor-none">
 
-      {/* HERO WITH COVER */}
-      <div className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-          className="absolute w-full h-full object-cover opacity-30"
-        />
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}>
-          <h1 className="text-6xl font-bold tracking-tight">Bhavin Kumar</h1>
-          <p className="mt-4 text-xl text-gray-300">Oracle Fusion HCM Consultant</p>
-        </motion.div>
+      {/* CUSTOM CURSOR */}
+      <div className="fixed w-4 h-4 bg-white rounded-full pointer-events-none mix-blend-difference z-50" id="cursor"></div>
+
+      {/* NAVBAR */}
+      <div className="fixed top-0 w-full backdrop-blur-xl bg-black/30 z-50 flex justify-between px-10 py-5 border-b border-white/10">
+        <h1 className="font-semibold tracking-wide">Bhavin Kumar</h1>
+        <div className="flex gap-8 text-sm">
+          <a href="#profile" className="hover:text-white/70">Profile</a>
+          <a href="#experience" className="hover:text-white/70">Experience</a>
+          <a href="#projects" className="hover:text-white/70">Projects</a>
+          <a href="#contact" className="hover:text-white/70">Contact</a>
+        </div>
       </div>
 
+      {/* HERO */}
+      <motion.div style={{ scale }} className="relative h-[90vh] flex flex-col items-center justify-center text-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" className="absolute w-full h-full object-cover opacity-20" />
+        <h1 className="text-7xl font-bold">Bhavin Kumar</h1>
+        <p className="mt-4 text-xl text-gray-300">Oracle Fusion HCM Consultant</p>
+        <div className="flex items-center gap-2 mt-3 text-gray-400">
+          <MapPin size={16} /> Karnataka, India
+        </div>
+        <button className="mt-6 px-8 py-3 bg-white text-black rounded-full hover:scale-110 transition duration-300 shadow-lg">
+          Download Resume
+        </button>
+        <p className="mt-3 text-green-400 text-sm">● Available for Hire</p>
+      </motion.div>
+
       {/* PROFILE */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        className="max-w-5xl mx-auto px-6 py-16"
-      >
-        <div className="flex items-center gap-3 mb-4">
-          <User />
-          <h2 className="text-3xl font-semibold">Profile</h2>
-        </div>
+      <section id="profile" className="max-w-5xl mx-auto px-6 py-24">
+        <div className="flex items-center gap-3 mb-6"><User /><h2 className="text-3xl">Profile</h2></div>
         <p className="text-gray-400 leading-relaxed">
-          Oracle Fusion HCM professional supporting multiple cloud implementations, specializing in OTBI, BIP reports, Redwood UI, and production support. Proven ability to resolve complex issues, collaborate with clients, and deliver scalable HR solutions.
+          Oracle Fusion HCM consultant with strong experience in OTBI, BIP, Redwood UI, and production support. Proven track record of improving reporting efficiency, resolving critical issues, and delivering scalable HR solutions.
         </p>
-      </motion.section>
+      </section>
 
-      {/* EXPERIENCE HOVER */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        className="max-w-5xl mx-auto px-6 py-16"
-      >
-        <div className="flex items-center gap-3 mb-8">
-          <Briefcase />
-          <h2 className="text-3xl font-semibold">Experience</h2>
-        </div>
-
+      {/* EXPERIENCE */}
+      <section id="experience" className="max-w-5xl mx-auto px-6 py-24">
+        <div className="flex items-center gap-3 mb-8"><Briefcase /><h2 className="text-3xl">Experience</h2></div>
         {[{
           title: "Oracle India Pvt Ltd",
-          content: `
-• Delivered 20+ OTBI & BIP reports improving reporting efficiency
-• Led Redwood UI implementation improving UX adoption
-• Reduced regression defects via structured testing
-• Handled Payroll & Compensation tickets with SR coordination
-• Conducted client workshops & requirement sessions
-          `
-        }, {
+          content: `• Delivered 20+ reports improving efficiency by 40%\n• Led Redwood UI migration\n• Reduced regression defects\n• Client workshops & SR handling`
+        },{
           title: "IBM India Pvt Ltd",
-          content: `
-• Resolved high-volume production tickets
-• Improved reporting through custom PS queries
-• Delivered documentation for fixes & enhancements
-          `
-        }].map((item, i) => (
-          <div
-            key={i}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            className="mb-6 p-6 rounded-2xl bg-white/5 backdrop-blur-lg transition"
-          >
-            <h3 className="text-xl font-medium">{item.title}</h3>
-            {hovered === i && (
-              <motion.pre
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-gray-400 mt-4 whitespace-pre-wrap"
-              >
-                {item.content}
-              </motion.pre>
-            )}
+          content: `• Managed production support\n• Built custom reports\n• Improved system efficiency`
+        }].map((item,i)=>(
+          <div key={i} onMouseEnter={()=>setHovered(i)} onMouseLeave={()=>setHovered(null)} className="mb-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition backdrop-blur-lg">
+            <h3 className="text-xl">{item.title}</h3>
+            {hovered===i && <motion.pre initial={{opacity:0}} animate={{opacity:1}} className="text-gray-400 mt-4 whitespace-pre-wrap">{item.content}</motion.pre>}
           </div>
         ))}
-      </motion.section>
+      </section>
 
-      {/* PROJECTS CASE STUDY */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        className="max-w-5xl mx-auto px-6 py-16"
-      >
-        <div className="flex items-center gap-3 mb-8">
-          <Folder />
-          <h2 className="text-3xl font-semibold">Projects</h2>
-        </div>
-
+      {/* PROJECTS */}
+      <section id="projects" className="max-w-5xl mx-auto px-6 py-24">
+        <div className="flex items-center gap-3 mb-8"><Folder /><h2 className="text-3xl">Projects</h2></div>
         {[{
-          title: "LLUH Cloud",
-          content: `
-Problem: Inefficient reporting & payroll issues
-Solution: Built OTBI/BIP reports + SR handling
-Impact: Faster reporting + improved client satisfaction
-          `
-        }, {
-          title: "Just Energy",
-          content: `
-Problem: Legacy UI & manual processes
-Solution: Implemented Redwood + VBCS
-Impact: Modern UX + improved usability
-          `
-        }].map((item, i) => (
-          <div
-            key={i}
-            onMouseEnter={() => setHovered("p" + i)}
-            onMouseLeave={() => setHovered(null)}
-            className="mb-6 p-6 rounded-2xl bg-white/5 backdrop-blur-lg"
-          >
-            <h3 className="text-xl font-medium">{item.title}</h3>
-            {hovered === "p" + i && (
-              <motion.pre
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-gray-400 mt-4 whitespace-pre-wrap"
-              >
-                {item.content}
-              </motion.pre>
-            )}
+          title:"LLUH Cloud",
+          content:`Problem: Reporting inefficiency\nSolution: OTBI/BIP\nImpact: Faster decisions`
+        },{
+          title:"Just Energy",
+          content:`Problem: Legacy UI\nSolution: Redwood\nImpact: Better UX`
+        }].map((item,i)=>(
+          <div key={i} onMouseEnter={()=>setHovered("p"+i)} onMouseLeave={()=>setHovered(null)} className="mb-6 p-6 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-lg">
+            <h3 className="text-xl">{item.title}</h3>
+            {hovered==="p"+i && <motion.pre initial={{opacity:0}} animate={{opacity:1}} className="text-gray-400 mt-4 whitespace-pre-wrap">{item.content}</motion.pre>}
           </div>
         ))}
-      </motion.section>
+      </section>
 
-      {/* SKILLS */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        className="max-w-5xl mx-auto px-6 py-16"
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <Code />
-          <h2 className="text-3xl font-semibold">Skills</h2>
-        </div>
-        <div className="grid grid-cols-2 gap-4 text-gray-300">
-          <p>Fusion HCM (OTBI, BIP, HDL)</p>
-          <p>Redwood UI & VBCS</p>
-          <p>PeopleSoft (PeopleCode, SQR)</p>
-          <p>SQL & Reporting</p>
-        </div>
-      </motion.section>
+      {/* METRICS */}
+      <section className="max-w-5xl mx-auto px-6 py-24 grid grid-cols-3 gap-6 text-center">
+        <div><h3 className="text-5xl font-bold">20+</h3><p className="text-gray-400">Reports Delivered</p></div>
+        <div><h3 className="text-5xl font-bold">{count}%</h3><p className="text-gray-400">Efficiency Boost</p></div>
+        <div><h3 className="text-5xl font-bold">3+</h3><p className="text-gray-400">Cloud Projects</p></div>
+      </section>
 
-      <footer className="text-center py-10 text-gray-500">
-        © 2026 Bhavin Kumar
-      </footer>
+      {/* CONTACT */}
+      <section id="contact" className="text-center py-24">
+        <Mail className="mx-auto mb-4" />
+        <h2 className="text-3xl mb-4">Let’s Work Together</h2>
+        <p className="text-gray-400">Open to Oracle HCM opportunities</p>
+        <button className="mt-6 px-8 py-3 bg-white text-black rounded-full hover:scale-110 transition shadow-lg">Contact Me</button>
+      </section>
+
+      <footer className="text-center py-6 text-gray-500">© 2026 Bhavin Kumar</footer>
+
+      {/* CURSOR SCRIPT */}
+      <script dangerouslySetInnerHTML={{__html: `
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+          cursor.style.top = e.clientY + 'px';
+          cursor.style.left = e.clientX + 'px';
+        });
+      `}} />
+
     </div>
   );
 }
