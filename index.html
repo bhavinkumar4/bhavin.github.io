@@ -3,253 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhavin Kumar | Elite Portfolio</title>
+<title>Premium Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#020617;
-  --text:#e5e7eb;
-  --accent:#6366f1;
+:root {
+  --bg: #0a0a0a;
+  --text: #ffffff;
+  --accent: linear-gradient(135deg, #7f5af0, #2cb67d);
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Inter;
+body.light {
+  --bg: #f5f5f5;
+  --text: #111;
 }
 
-body{
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.4s;
+  overflow-x: hidden;
 }
 
-/* CANVAS BACKGROUND */
-#bgCanvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
+/* NAV */
+nav {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+}
+
+nav h1 {
+  font-size: 18px;
+}
+
+.toggle {
+  cursor: pointer;
 }
 
 /* HERO */
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+  background: radial-gradient(circle at top, #1a1a2e, #000);
 }
 
-.typing{
-  font-size:3rem;
+.hero h2 {
+  font-size: 60px;
+  background: var(--accent);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-/* PROJECT CARD */
-.card{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  padding:20px;
-  border-radius:20px;
-  margin:20px;
-  cursor:pointer;
-  transition:.3s;
+/* PARTICLES */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
-.card:hover{
-  transform:scale(1.05);
+/* SECTIONS */
+.section {
+  padding: 100px 10%;
 }
 
-/* MODAL */
-.modal{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.9);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  pointer-events:none;
-  transition:.4s;
+.projects {
+  background: linear-gradient(135deg, #0f2027, #203a43);
 }
 
-.modal.active{
-  opacity:1;
-  pointer-events:auto;
+.contact {
+  background: linear-gradient(135deg, #232526, #414345);
 }
 
-.modal-content{
-  background:#111;
-  padding:30px;
-  border-radius:20px;
-  max-width:500px;
+/* CARDS */
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
 }
 
-/* CONTACT */
-form{
-  margin-top:40px;
+.card:hover {
+  transform: scale(1.05);
 }
 
-input,textarea{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:10px;
-  border:none;
+/* METRICS */
+.metrics {
+  display: flex;
+  gap: 20px;
 }
 
-button{
-  padding:10px;
-  width:100%;
-  border:none;
-  border-radius:10px;
-  background:var(--accent);
-  color:white;
+.metric {
+  font-size: 24px;
 }
 
-/* SECTION */
-section{
-  padding:80px 10%;
+/* FORM */
+.contact-form {
+  max-width: 500px;
+}
+
+.input-group {
+  position: relative;
+  margin: 20px 0;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #555;
+  color: white;
+}
+
+button {
+  padding: 10px 20px;
+  background: var(--accent);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #111;
+  padding: 30px;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+
+.popup.active {
+  transform: translate(-50%, -50%) scale(1);
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="bgCanvas"></canvas>
+<canvas id="particles"></canvas>
+
+<nav>
+  <h1>Your Name</h1>
+  <div class="toggle" onclick="toggleMode()">🌗</div>
+</nav>
 
 <section class="hero">
-  <h1 class="typing" id="typing"></h1>
-  <p>Oracle Fusion HCM | OTBI | Redwood | HSDL</p>
+  <h2 id="typing"></h2>
+  <p>Oracle HCM | Developer | Problem Solver</p>
 </section>
 
-<section>
+<section class="section projects">
   <h2>Projects</h2>
-
-  <div class="card" onclick="openModal('LLUH Project','Improved reporting efficiency by delivering OTBI & BIP reports. Reduced manual work.')">
-    LLUH Cloud Project
+  
+  <div class="card" onclick="openPopup()">
+    <h3>Oracle Report Optimization</h3>
+    <p>Hover / Click to view case study</p>
   </div>
 
-  <div class="card" onclick="openModal('Just Energy','Implemented Redwood UI. Improved UX and reduced navigation complexity.')">
-    Just Energy Project
+  <div class="metrics">
+    <div class="metric">⚡ 70% Faster</div>
+    <div class="metric">📉 40% Cost Reduced</div>
   </div>
 </section>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3 id="modalTitle"></h3>
-    <p id="modalText"></p>
-    <button onclick="closeModal()">Close</button>
-  </div>
-</div>
-
-<section>
+<section class="section contact">
   <h2>Contact</h2>
 
-  <form action="https://formspree.io/f/mwvnddkd" method="POST">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Message"></textarea>
+  <form action="https://formspree.io/f/mwvnddkd" method="POST" class="contact-form">
+    <div class="input-group">
+      <input type="text" name="name" required>
+      <label>Name</label>
+    </div>
+
+    <div class="input-group">
+      <input type="email" name="email" required>
+      <label>Email</label>
+    </div>
+
+    <div class="input-group">
+      <textarea name="message" required></textarea>
+      <label>Message</label>
+    </div>
+
+    <input type="hidden" name="_subject" value="Portfolio Message 🚀">
+
     <button type="submit">Send</button>
   </form>
 </section>
 
+<div class="popup" id="popup">
+  <h2>Case Study</h2>
+  <p><b>Before:</b> Slow report (15s)</p>
+  <p><b>After:</b> Optimized (4s)</p>
+  <button onclick="closePopup()">Close</button>
+</div>
+
 <script>
-/* TYPING */
-const roles=[
-"Oracle Fusion HCM Analyst",
-"Redwood UI Developer",
-"OTBI & BIP Specialist"
-];
+// DARK MODE
+function toggleMode() {
+  document.body.classList.toggle("light");
+  localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+}
 
-let i=0,j=0,current="",del=false;
+if(localStorage.getItem("theme") === "light"){
+  document.body.classList.add("light");
+}
 
-function type(){
-  let el=document.getElementById("typing");
-
-  if(i<roles.length){
-    if(!del && j<=roles[i].length){
-      current=roles[i].substring(0,j++);
-    }else if(del && j>=0){
-      current=roles[i].substring(0,j--);
-    }
-
-    el.textContent=current;
-
-    if(j===roles[i].length) del=true;
-    if(j===0 && del){ del=false; i++; }
-  } else i=0;
-
-  setTimeout(type,80);
+// TYPING EFFECT
+const text = "Hi, I'm a Premium Developer 🚀";
+let i = 0;
+function type() {
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 50);
+  }
 }
 type();
 
-/* MODAL */
-function openModal(title,text){
-  document.getElementById("modal").classList.add("active");
-  document.getElementById("modalTitle").innerText=title;
-  document.getElementById("modalText").innerText=text;
+// POPUP
+function openPopup(){
+  document.getElementById("popup").classList.add("active");
+}
+function closePopup(){
+  document.getElementById("popup").classList.remove("active");
 }
 
-function closeModal(){
-  document.getElementById("modal").classList.remove("active");
+// PARTICLES
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<100;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2
+  });
 }
-
-/* ANALYTICS (basic) */
-fetch("https://api.countapi.xyz/hit/bhavin-portfolio/visits");
-
-/* THREE JS PARTICLES */
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-
-const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('bgCanvas'),alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-
-const particlesGeometry=new THREE.BufferGeometry();
-const count=1000;
-
-const positions=new Float32Array(count*3);
-
-for(let i=0;i<count*3;i++){
-  positions[i]=(Math.random()-0.5)*5;
-}
-
-particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
-
-const particlesMaterial=new THREE.PointsMaterial({
-  size:0.01,
-  color:0x6366f1
-});
-
-const particles=new THREE.Points(particlesGeometry,particlesMaterial);
-scene.add(particles);
-
-camera.position.z=2;
 
 function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+  });
   requestAnimationFrame(animate);
-  particles.rotation.y+=0.0005;
-  renderer.render(scene,camera);
 }
-
 animate();
-
-/* RESIZE */
-window.addEventListener('resize',()=>{
-  camera.aspect=window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth,window.innerHeight);
-});
 </script>
 
 </body>
