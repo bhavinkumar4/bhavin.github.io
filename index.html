@@ -3,301 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Bhavin Kumar | Portfolio</title>
 
 <style>
-:root{
-  --bg:#0a0a0a;
-  --text:#fff;
-  --accent:#00f2ff;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.light{
-  --bg:#ffffff;
-  --text:#111;
-  --accent:#0077ff;
-}
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-  transition:.4s;
-}
-
-/* NAV */
-nav{
-  position:fixed;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  padding:20px 50px;
-  backdrop-filter:blur(10px);
-  z-index:1000;
-}
-
-nav button{
-  background:var(--accent);
-  border:none;
-  padding:10px 20px;
-  border-radius:20px;
-  cursor:pointer;
+body {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: white;
+  scroll-behavior: smooth;
 }
 
 /* HERO */
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#000428,#004e92);
-  text-align:center;
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.typing{
-  font-size:2.5rem;
-  border-right:3px solid;
-  white-space:nowrap;
-  overflow:hidden;
+.glow-text {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-/* SKILLS */
-.skills{
-  padding:80px;
-  background:linear-gradient(135deg,#1f1c2c,#928dab);
+.hero-desc {
+  margin-top: 15px;
+  color: #cbd5f5;
+  max-width: 600px;
 }
 
-.skill{
-  margin:20px 0;
+.btn {
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 20px;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.bar{
-  height:10px;
-  background:#333;
-  border-radius:10px;
+.primary {
+  background: #6366f1;
+  color: white;
 }
 
-.fill{
-  height:10px;
-  background:var(--accent);
-  width:0;
-  border-radius:10px;
-  transition:1s;
+.secondary {
+  border: 1px solid white;
+  color: white;
+}
+
+/* METRICS */
+.metrics {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 60px;
+}
+
+.metric-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.metric-card:hover {
+  transform: scale(1.1);
+}
+
+/* EXPERIENCE */
+.experience {
+  padding: 60px;
+}
+
+.exp-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 15px;
+}
+
+.exp-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.exp-card:hover .exp-details {
+  max-height: 200px;
 }
 
 /* PROJECTS */
-.projects{
-  padding:80px;
-  background:linear-gradient(135deg,#232526,#414345);
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+.projects {
+  padding: 60px;
 }
 
-.card{
-  background:rgba(255,255,255,0.05);
-  padding:20px;
-  border-radius:20px;
-  transition:.4s;
-  position:relative;
-  overflow:hidden;
+.project-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 15px;
+  transition: 0.3s;
 }
 
-.card:hover{
-  transform:scale(1.05);
+.project-card:hover {
+  transform: scale(1.05);
 }
 
-.card:hover .overlay{
-  opacity:1;
+.project-hover {
+  opacity: 0;
+  transition: 0.3s;
 }
 
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  transition:.4s;
-}
-
-/* TIMELINE */
-.timeline{
-  padding:80px;
-  background:linear-gradient(135deg,#141e30,#243b55);
-}
-
-.timeline-item{
-  margin:20px 0;
-  border-left:3px solid var(--accent);
-  padding-left:20px;
+.project-card:hover .project-hover {
+  opacity: 1;
 }
 
 /* CONTACT */
-.contact{
-  padding:80px;
-  background:url('https://images.unsplash.com/photo-1521791136064-7986c2920216') center/cover;
+.contact {
+  padding: 60px;
+  text-align: center;
 }
 
-.contact-form{
-  background:rgba(0,0,0,0.7);
-  padding:30px;
-  border-radius:20px;
+input, textarea {
+  width: 80%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
 }
 
-input, textarea{
-  width:100%;
-  margin:10px 0;
-  padding:10px;
-  border:none;
-  border-radius:10px;
-}
-
-button.send{
-  background:var(--accent);
-  border:none;
-  padding:10px;
-  width:100%;
-  border-radius:10px;
-}
-
-/* BADGES */
-.badges img{
-  width:60px;
-  margin:10px;
-  transition:.3s;
-}
-.badges img:hover{
-  transform:scale(1.2);
+button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <h2>Your Name</h2>
-  <button onclick="toggleTheme()">Toggle Mode</button>
-</nav>
-
+<!-- HERO -->
 <section class="hero">
-  <h1 class="typing" id="typing"></h1>
-</section>
+  <div>
+    <h1 class="glow-text">Bhavin Kumar</h1>
+    <h2 class="typing"></h2>
 
-<section class="skills">
-  <h2>Skills</h2>
+    <p class="hero-desc">
+      Oracle Fusion HCM Analyst specializing in OTBI, BIP Reports, Redwood UI & HSDL.
+    </p>
 
-  <div class="skill">
-    HTML
-    <div class="bar"><div class="fill" style="width:90%"></div></div>
-  </div>
-
-  <div class="skill">
-    JavaScript
-    <div class="bar"><div class="fill" style="width:85%"></div></div>
-  </div>
-
-</section>
-
-<section class="projects">
-  <div class="card">
-    <h3>Project 1</h3>
-    <div class="overlay">
-      <p>🚀 Increased performance by 40%</p>
-      <p>⚡ Reduced load time from 5s → 2s</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Project 2</h3>
-    <div class="overlay">
-      <p>📈 Improved UX by 60%</p>
-      <p>🔥 Increased conversions by 25%</p>
-    </div>
+    <a href="#projects" class="btn primary">View Projects</a>
   </div>
 </section>
 
-<section class="timeline">
+<!-- METRICS -->
+<section class="metrics">
+  <div class="metric-card"><h2>10+</h2><p>Reports Delivered</p></div>
+  <div class="metric-card"><h2>2+</h2><p>Cloud Projects</p></div>
+  <div class="metric-card"><h2>100%</h2><p>On-time Delivery</p></div>
+  <div class="metric-card"><h2>0</h2><p>Escalations</p></div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience">
   <h2>Experience</h2>
 
-  <div class="timeline-item">
-    <h3>Company 1</h3>
-    <p>Built scalable system</p>
+  <div class="exp-card">
+    <h3>Oracle India Pvt Ltd (2022 - Present)</h3>
+    <div class="exp-details">
+      <ul>
+        <li>OTBI & BIP Reports Development</li>
+        <li>Redwood UI Implementation</li>
+        <li>Regression Testing Leadership</li>
+        <li>Handled Oracle SRs</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="timeline-item">
-    <h3>Company 2</h3>
-    <p>Improved performance</p>
+  <div class="exp-card">
+    <h3>IBM India Pvt Ltd (2019 - 2022)</h3>
+    <div class="exp-details">
+      <ul>
+        <li>Production Support</li>
+        <li>PS Query & Report Development</li>
+        <li>Client Communication</li>
+      </ul>
+    </div>
   </div>
+
 </section>
 
-<section class="badges">
-  <h2>Companies</h2>
-  <img src="https://logo.clearbit.com/google.com">
-  <img src="https://logo.clearbit.com/amazon.com">
-  <img src="https://logo.clearbit.com/oracle.com">
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <h2>Projects</h2>
+
+  <div class="project-card">
+    <h3>LLUH Cloud Project</h3>
+    <div class="project-hover">
+      <p><b>Problem:</b> Reporting gaps</p>
+      <p><b>Solution:</b> OTBI & BIP reports</p>
+      <p><b>Impact:</b> Improved client efficiency</p>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <h3>Just Energy</h3>
+    <div class="project-hover">
+      <p><b>Problem:</b> UI modernization</p>
+      <p><b>Solution:</b> Redwood UI</p>
+      <p><b>Impact:</b> Better user experience</p>
+    </div>
+  </div>
+
 </section>
 
-<section id="contact">
+<!-- CONTACT -->
+<section class="contact">
   <h2>Contact Me</h2>
 
-  <form action="https://formspree.io/f/mwvnddkd" method="POST" class="contact-form">
-
-    <div class="input-group">
-      <input type="text" name="name" required>
-      <label>Name</label>
-    </div>
-
-    <div class="input-group">
-      <input type="email" name="email" required>
-      <label>Email</label>
-    </div>
-
-    <div class="input-group">
-      <textarea name="message" rows="4" required></textarea>
-      <label>Message</label>
-    </div>
-
-    <input type="hidden" name="_subject" value="New Portfolio Message 🚀">
-
-    <button type="submit" class="send-btn">Send Message</button>
-
+  <form action="https://formspree.io/f/mwvnddkd" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="email" name="email" placeholder="Your Email" required><br>
+    <textarea name="message" placeholder="Message" required></textarea><br>
+    <button type="submit">Send</button>
   </form>
 </section>
 
+<!-- TYPING SCRIPT -->
 <script>
-/* Typing Animation */
-const text = "Hi, I'm a Developer 🚀";
-let i=0;
-function typing(){
-  if(i<text.length){
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing,100);
-  }
-}
-typing();
+const roles = [
+  "Oracle Fusion HCM Analyst",
+  "OTBI & BIP Specialist",
+  "Redwood UI Developer",
+  "PeopleSoft Consultant"
+];
 
-/* Theme Toggle */
-function toggleTheme(){
-  document.body.classList.toggle("light");
-  localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
+let i = 0, j = 0, current = "", isDeleting = false;
+
+function type() {
+  const el = document.querySelector(".typing");
+
+  if (i < roles.length) {
+    if (!isDeleting && j <= roles[i].length) {
+      current = roles[i].substring(0, j++);
+    } else if (isDeleting && j >= 0) {
+      current = roles[i].substring(0, j--);
+    }
+
+    el.textContent = current;
+
+    if (j === roles[i].length) isDeleting = true;
+    if (j === 0 && isDeleting) {
+      isDeleting = false;
+      i++;
+    }
+  } else {
+    i = 0;
+  }
+
+  setTimeout(type, isDeleting ? 50 : 100);
 }
 
-window.onload=()=>{
-  if(localStorage.getItem("theme")==="light"){
-    document.body.classList.add("light");
-  }
-}
+type();
 </script>
 
 </body>
 </html>
-
