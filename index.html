@@ -1,177 +1,187 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useState, useEffect } from "react";
-import { Briefcase, Folder, User, Mail, MapPin, Sun, Moon } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhavin Kumar | Oracle Fusion HCM</title>
 
-export default function Portfolio() {
-  const [hovered, setHovered] = useState(null);
-  const [dark, setDark] = useState(true);
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+    }
 
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0a0a0a, #111);
+      text-align: center;
+    }
 
-  const [count, setCount] = useState(0);
+    h1 {
+      font-size: 48px;
+      margin: 0;
+    }
 
-  useEffect(() => {
-    let start = 0;
-    const end = 40;
-    const duration = 1500;
-    const step = end / (duration / 30);
+    p {
+      opacity: 0.7;
+    }
 
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= end) {
-        start = end;
-        clearInterval(timer);
-      }
-      setCount(Math.floor(start));
-    }, 30);
+    .section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-    return () => clearInterval(timer);
-  }, []);
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
 
-  const theme = dark ? "bg-black text-white" : "bg-white text-black";
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.08);
+    }
 
-  return (
-    <div className={`${theme} min-h-screen font-sans transition duration-500`}>
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: auto;
+    }
 
-      {/* NAVBAR */}
-      <div className="fixed top-0 w-full backdrop-blur-xl bg-opacity-30 z-50 flex justify-between px-4 md:px-10 py-4 border-b">
-        <h1 className="font-semibold">Bhavin Kumar</h1>
+    input, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
 
-        <div className="flex items-center gap-4 md:gap-8 text-sm">
-          <a href="#profile">Profile</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #0071e3;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-          <button onClick={() => setDark(!dark)}>
-            {dark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-        </div>
-      </div>
+    button:hover {
+      background: #005bb5;
+    }
 
-      {/* HERO */}
-      <motion.div
-        style={{ scale }}
-        className="relative h-[80vh] flex flex-col items-center justify-center text-center px-4"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
-          className="absolute w-full h-full object-cover opacity-20"
-        />
+    .success {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      color: #4caf50;
+    }
 
-        <h1 className="text-4xl md:text-7xl font-bold">Bhavin Kumar</h1>
-        <p className="mt-3 text-lg md:text-xl opacity-80">Oracle Fusion HCM Consultant</p>
+    @media(max-width:600px){
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
 
-        <div className="flex items-center gap-2 mt-2 text-sm opacity-70">
-          <MapPin size={14} /> Karnataka, India
-        </div>
+<body>
 
-        <button className="mt-6 px-6 py-3 rounded-full bg-white text-black hover:scale-105 transition">
-          Download Resume
-        </button>
+<header>
+  <h1>Bhavin Kumar</h1>
+  <p>Oracle Fusion HCM Analyst | OTBI | BIP | Redwood | VBCS</p>
+</header>
 
-        <p className="mt-3 text-green-400 text-sm">● Available for Hire</p>
-      </motion.div>
+<section class="section">
+  <h2>About Me</h2>
+  <div class="card">
+    Recently transitioned into Oracle Fusion HCM, supporting multiple projects.
+    Skilled in reports, support, and Redwood UI. Focused on continuous learning and growth.
+  </div>
+</section>
 
-      {/* PROFILE */}
-      <section id="profile" className="max-w-5xl mx-auto px-4 md:px-6 py-16">
-        <div className="flex items-center gap-2 mb-4">
-          <User />
-          <h2 className="text-2xl md:text-3xl">Profile</h2>
-        </div>
-        <p className="opacity-70">
-          Oracle Fusion HCM consultant experienced in OTBI, BIP, Redwood UI, and production support. Focused on delivering scalable HR solutions and improving system efficiency.
-        </p>
-      </section>
+<section class="section">
+  <h2>Experience</h2>
 
-      {/* EXPERIENCE */}
-      <section id="experience" className="max-w-5xl mx-auto px-4 md:px-6 py-16">
-        <div className="flex items-center gap-2 mb-6">
-          <Briefcase />
-          <h2 className="text-2xl md:text-3xl">Experience</h2>
-        </div>
+  <div class="card">
+    <h3>Oracle India Pvt Ltd</h3>
+    <p>Analyst (2022–Present)</p>
+    <p>Worked on OTBI, BIP Reports, Redwood UI, VBCS, Payroll support, and client interactions.</p>
+  </div>
 
-        {[{
-          title: "Oracle India Pvt Ltd",
-          content: `• Delivered 20+ reports improving efficiency by 40%\n• Led Redwood UI migration\n• Reduced regression defects\n• Client workshops`
-        }, {
-          title: "IBM India Pvt Ltd",
-          content: `• Managed production support\n• Built custom reports\n• Improved efficiency`
-        }].map((item, i) => (
-          <div
-            key={i}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-            className="mb-4 p-4 rounded-xl bg-white/10 backdrop-blur"
-          >
-            <h3>{item.title}</h3>
-            {hovered === i && (
-              <motion.pre className="mt-2 text-sm opacity-70 whitespace-pre-wrap">
-                {item.content}
-              </motion.pre>
-            )}
-          </div>
-        ))}
-      </section>
+  <div class="card">
+    <h3>IBM India Pvt Ltd</h3>
+    <p>Associate Consultant (2019–2022)</p>
+    <p>Handled HCM support, reports, and production issues.</p>
+  </div>
+</section>
 
-      {/* PROJECTS */}
-      <section id="projects" className="max-w-5xl mx-auto px-4 md:px-6 py-16">
-        <div className="flex items-center gap-2 mb-6">
-          <Folder />
-          <h2 className="text-2xl md:text-3xl">Projects</h2>
-        </div>
+<section class="section">
+  <h2>Projects</h2>
 
-        {[{
-          title: "LLUH Cloud",
-          content: `Problem → Reporting inefficiency\nSolution → OTBI/BIP\nImpact → Faster decisions`
-        }, {
-          title: "Just Energy",
-          content: `Problem → Legacy UI\nSolution → Redwood\nImpact → Better UX`
-        }].map((item, i) => (
-          <div
-            key={i}
-            onMouseEnter={() => setHovered("p" + i)}
-            onMouseLeave={() => setHovered(null)}
-            className="mb-4 p-4 rounded-xl bg-white/10 backdrop-blur"
-          >
-            <h3>{item.title}</h3>
-            {hovered === "p" + i && (
-              <motion.pre className="mt-2 text-sm opacity-70 whitespace-pre-wrap">
-                {item.content}
-              </motion.pre>
-            )}
-          </div>
-        ))}
-      </section>
+  <div class="card">
+    <h3>LLUH Cloud</h3>
+    <p>Reports, HSDL, Payroll tickets, client calls</p>
+  </div>
 
-      {/* METRICS */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-        <div>
-          <h3 className="text-3xl md:text-5xl font-bold">20+</h3>
-          <p className="opacity-70">Reports</p>
-        </div>
-        <div>
-          <h3 className="text-3xl md:text-5xl font-bold">{count}%</h3>
-          <p className="opacity-70">Efficiency</p>
-        </div>
-        <div>
-          <h3 className="text-3xl md:text-5xl font-bold">3+</h3>
-          <p className="opacity-70">Projects</p>
-        </div>
-      </section>
+  <div class="card">
+    <h3>Just Energy</h3>
+    <p>Redwood UI, VBCS, Testing & Patch validation</p>
+  </div>
 
-      {/* CONTACT */}
-      <section id="contact" className="text-center py-16">
-        <Mail className="mx-auto mb-2" />
-        <h2 className="text-2xl md:text-3xl">Contact</h2>
-        <p className="opacity-70">Open for opportunities</p>
-      </section>
+</section>
 
-      <footer className="text-center py-6 opacity-50">
-        © 2026 Bhavin Kumar
-      </footer>
+<section class="section">
+  <h2>Contact Me</h2>
 
-    </div>
-  );
-}
+  <form id="contact-form" action="https://formspree.io/f/mwvnddkd" method="POST" class="contact-form">
+
+    <input type="text" name="name" required placeholder="Your Name">
+    <input type="email" name="email" required placeholder="Your Email">
+    <textarea name="message" required placeholder="Your Message"></textarea>
+
+    <button type="submit">Send Message</button>
+
+  </form>
+
+  <div class="success" id="successMsg">
+    ✅ Message sent successfully!
+  </div>
+
+</section>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('successMsg');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.reset();
+      successMsg.style.display = 'block';
+    } else {
+      alert("Something went wrong!");
+    }
+  });
+</script>
+
+</body>
+</html>
