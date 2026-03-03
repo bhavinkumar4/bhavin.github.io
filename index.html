@@ -19,13 +19,6 @@
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        body.light {
-            --bg: #f8f9fa;
-            --card-bg: rgba(0, 0, 0, 0.03);
-            --text: #1a1a1a;
-            --glass-border: rgba(0, 0, 0, 0.1);
-        }
-
         * { box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
@@ -33,7 +26,6 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: var(--bg);
             color: var(--text);
-            transition: background 0.5s ease;
             overflow-x: hidden;
         }
 
@@ -51,7 +43,6 @@
         }
 
         .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
-        .toggle { font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
 
         /* --- HERO --- */
         .hero {
@@ -67,15 +58,14 @@
         .hero h2 { font-size: clamp(3rem, 8vw, 5rem); margin: 0; font-weight: 800; line-height: 1.1; }
         .gradient-text { background: var(--accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- COUNTER SECTION --- */
         .counter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
             margin-top: 50px;
         }
         .counter-item h3 { font-size: 3rem; margin: 0; color: var(--secondary); }
-        .counter-item p { opacity: 0.7; margin: 0; font-weight: 600; }
+        .counter-item p { opacity: 0.7; font-weight: 600; margin: 0; }
 
         /* --- SECTIONS --- */
         .section { padding: 100px 10%; }
@@ -83,23 +73,22 @@
         h2.section-title::after { content: ""; height: 1px; flex-grow: 1; background: var(--glass-border); }
 
         /* --- SKILLS --- */
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 700; }
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .skill-info { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; }
         .skill-bar { height: 6px; background: var(--glass-border); border-radius: 10px; overflow: hidden; }
         .skill-progress { height: 100%; background: var(--accent); width: 0; transition: 2s cubic-bezier(0.1, 0, 0.2, 1); }
 
-        /* --- PROJECT GALLERY (THE "PUSH HARD" STYLE) --- */
+        /* --- PROJECT GALLERY --- */
         .project-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
         .project-card {
             position: relative; height: 450px; border-radius: 40px; overflow: hidden;
-            cursor: pointer; border: 1px solid var(--glass-border);
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid var(--glass-border); cursor: pointer; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .project-image { width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.8s; }
         .project-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 10%, transparent 100%);
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 40px;
+            position: absolute; inset: 0; padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex; flex-direction: column; justify-content: flex-end;
         }
         .project-card:hover { transform: translateY(-15px); border-color: var(--primary); }
         .project-card:hover .project-image { transform: scale(1.1); }
@@ -109,78 +98,78 @@
         .timeline-item { position: relative; margin-bottom: 50px; }
         .timeline-dot { position: absolute; left: -41px; top: 5px; width: 20px; height: 20px; background: var(--bg); border: 4px solid var(--primary); border-radius: 50%; }
 
+        /* --- CONTACT SECTION (SPLIT SCREEN) --- */
+        .contact-section { background: #000; border-radius: 60px 60px 0 0; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .contact-heading { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 20px; }
+        
+        .premium-form { background: rgba(255,255,255,0.03); padding: 50px; border-radius: 40px; border: 1px solid var(--glass-border); backdrop-filter: blur(10px); }
+        .input-group { margin-bottom: 20px; }
+        .input-group input, .input-group textarea {
+            width: 100%; padding: 18px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            border-radius: 16px; color: white; outline: none; transition: 0.3s; font-family: inherit;
+        }
+        .input-group input:focus, .input-group textarea:focus { border-color: var(--primary); }
+        
+        .btn-premium {
+            background: var(--accent); color: white; padding: 20px; width: 100%; border: none;
+            border-radius: 16px; font-weight: 800; cursor: pointer; transition: 0.4s;
+        }
+        .btn-premium:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(127,90,240,0.3); }
+
         /* --- CV BUTTON --- */
         .cv-button {
             position: fixed; bottom: 30px; right: 30px; z-index: 2000;
-            background: var(--accent); color: white; padding: 15px 25px;
-            border-radius: 50px; text-decoration: none; font-weight: 700;
-            display: flex; align-items: center; gap: 10px;
-            box-shadow: 0 10px 20px rgba(127, 90, 240, 0.3); animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(127, 90, 240, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(127, 90, 240, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(127, 90, 240, 0); }
+            background: var(--accent); color: white; padding: 15px 25px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; box-shadow: 0 10px 20px rgba(127,90,240,0.3);
         }
 
         /* --- POPUP --- */
-        .popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 3000; padding: 20px; }
-        .popup-content { background: #111; padding: 40px; border-radius: 30px; max-width: 600px; border: 1px solid var(--primary); text-align: center; }
+        .popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 3000; }
+        .popup-content { background: #111; padding: 40px; border-radius: 30px; max-width: 500px; text-align: center; border: 1px solid var(--primary); }
 
-        @media (max-width: 768px) { .skills-grid, .project-gallery { grid-template-columns: 1fr; } }
+        @media (max-width: 968px) { .contact-container, .skills-grid, .project-gallery { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="logo">BHAVIN.</div>
-    <div class="toggle" onclick="toggleMode()">🌓</div>
 </nav>
 
-<a href="#" class="cv-button">
-    <span>Download CV</span>
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-</a>
+<a href="#" class="cv-button">Download CV</a>
 
 <section class="hero">
     <h2 id="typing"></h2>
-    <div class="counter-grid" data-aos="fade-up" data-aos-delay="400">
+    <div class="counter-grid" data-aos="fade-up">
         <div class="counter-item"><h3><span class="count" data-target="5">0</span>+</h3><p>Years Experience</p></div>
-        <div class="counter-item"><h3><span class="count" data-target="50">0</span>+</h3><p>Reports Automated</p></div>
-        <div class="counter-item"><h3><span class="count" data-target="12">0</span>+</h3><p>Patch Regressions</p></div>
+        <div class="counter-item"><h3><span class="count" data-target="50">0</span>+</h3><p>Reports Created</p></div>
+        <div class="counter-item"><h3><span class="count" data-target="100">0</span>%</h3><p>Cloud Delivery</p></div>
     </div>
 </section>
+
 
 <section class="section">
     <h2 class="section-title" data-aos="fade-right">Technical Prowess</h2>
     <div class="skills-grid">
-        <div class="skill-item">
-            <div class="skill-info"><span>Oracle Fusion (HCM/Payroll)</span><span>95%</span></div>
+        <div class="skill-item" data-aos="fade-up">
+            <div class="skill-info"><span>Oracle Fusion HCM</span><span>95%</span></div>
             <div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
         </div>
-        <div class="skill-item">
-            <div class="skill-info"><span>Redwood UI & VBCS</span><span>88%</span></div>
+        <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="skill-info"><span>Redwood UI / VBCS</span><span>88%</span></div>
             <div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div>
-        </div>
-        <div class="skill-item">
-            <div class="skill-info"><span>BIP & OTBI Development</span><span>92%</span></div>
-            <div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div>
-        </div>
-        <div class="skill-item">
-            <div class="skill-info"><span>HDL / HSDL Integrations</span><span>90%</span></div>
-            <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
         </div>
     </div>
 </section>
 
 <section class="section">
-    <h2 class="section-title" data-aos="fade-right">Strategic Initiatives</h2>
+    <h2 class="section-title" data-aos="fade-right">Featured Projects</h2>
     <div class="project-gallery">
         <div class="project-card" onclick="openPopup('lluh')" data-aos="zoom-in">
             <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1000');"></div>
             <div class="project-overlay">
-                <small style="color:var(--secondary); font-weight:800;">CLOUD MIGRATION</small>
+                <small style="color:var(--secondary)">CLOUD PAYROLL</small>
                 <h3>LLUH Health</h3>
                 <p>Scaling global payroll systems.</p>
             </div>
@@ -188,7 +177,7 @@
         <div class="project-card" onclick="openPopup('just-energy')" data-aos="zoom-in" data-aos-delay="200">
             <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1000');"></div>
             <div class="project-overlay">
-                <small style="color:var(--secondary); font-weight:800;">REDWOOD / VBCS</small>
+                <small style="color:var(--secondary)">REDWOOD / VBCS</small>
                 <h3>Just Energy</h3>
                 <p>Architecting custom UI extensions.</p>
             </div>
@@ -204,7 +193,7 @@
             <div style="font-weight: 800; color: var(--primary);">2022 - PRESENT</div>
             <div style="background: var(--card-bg); padding: 30px; border-radius: 20px; margin-top: 15px; border: 1px solid var(--glass-border);">
                 <h3>Oracle India Pvt Ltd</h3>
-                <p>Lead Consultant for Cloud Payroll & Core HR. Expert in Redwood UI and VBCS.</p>
+                <p>Leading cloud transformation for LLUH. Implementing Redwood UI and patch regressions.</p>
             </div>
         </div>
         <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
@@ -212,8 +201,25 @@
             <div style="font-weight: 800; color: var(--primary);">2019 - 2022</div>
             <div style="background: var(--card-bg); padding: 30px; border-radius: 20px; margin-top: 15px; border: 1px solid var(--glass-border);">
                 <h3>IBM India Pvt Ltd</h3>
-                <p>PeopleSoft HCM Support. Managed legacy reporting and global ticket resolution.</p>
+                <p>PeopleSoft HCM 9.2 Technical Support and SQR reporting.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="section contact-section">
+    <div class="contact-container">
+        <div class="contact-info" data-aos="fade-right">
+            <h2 class="contact-heading">Let's build the <span class="gradient-text">Future</span> of HR.</h2>
+            <p style="color: #aaa; font-size: 1.1rem;">Accepting inquiries for Oracle HCM consulting and Redwood UI transitions.</p>
+        </div>
+        <div class="contact-form-wrapper" data-aos="fade-left">
+            <form action="https://formspree.io/f/mwvnddkd" method="POST" class="premium-form">
+                <div class="input-group"><input type="text" name="name" placeholder="Name" required></div>
+                <div class="input-group"><input type="email" name="email" placeholder="Email" required></div>
+                <div class="input-group"><textarea name="message" rows="4" placeholder="How can I help?"></textarea></div>
+                <button type="submit" class="btn-premium">Initiate Conversation</button>
+            </form>
         </div>
     </div>
 </section>
@@ -222,7 +228,7 @@
     <div class="popup-content">
         <h2 id="popTitle" class="gradient-text"></h2>
         <p id="popBody" style="line-height: 1.8; opacity: 0.9;"></p>
-        <button class="cv-button" onclick="closePopup()" style="position: static; margin: 20px auto;">Close Overview</button>
+        <button class="btn-premium" onclick="closePopup()" style="width: auto; padding: 10px 30px;">Close</button>
     </div>
 </div>
 
@@ -230,57 +236,39 @@
 <script>
     AOS.init({ duration: 1000, once: true });
 
-    function toggleMode(){
-        document.body.classList.toggle("light");
-    }
-
-    // Typing Effect
     const text = "Architecting the Modern Workforce.";
     let i = 0;
-    function type(){
-        if(i < text.length){
+    function type() {
+        if(i < text.length) {
             document.getElementById("typing").innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, 70);
+            i++; setTimeout(type, 70);
         }
     }
-    window.onload = () => {
-        type();
-        startCounters();
-        animateSkills();
-    };
 
-    // Counter Animation
-    function startCounters() {
+    function startAnimations() {
+        // Counter logic
         const counters = document.querySelectorAll('.count');
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const updateCount = () => {
-                const count = +counter.innerText;
-                const inc = target / 100;
+        counters.forEach(c => {
+            const target = +c.getAttribute('data-target');
+            const update = () => {
+                const count = +c.innerText;
                 if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(updateCount, 20);
-                } else {
-                    counter.innerText = target;
-                }
+                    c.innerText = Math.ceil(count + (target/50));
+                    setTimeout(update, 30);
+                } else { c.innerText = target; }
             };
-            updateCount();
+            update();
         });
+        // Skill bar logic
+        const bars = document.querySelectorAll('.skill-progress');
+        bars.forEach(b => { b.style.width = b.getAttribute('data-width'); });
     }
 
-    // Skill Bar Animation
-    function animateSkills() {
-        const progresses = document.querySelectorAll('.skill-progress');
-        progresses.forEach(p => {
-            p.style.width = p.getAttribute('data-width');
-        });
-    }
+    window.onload = () => { type(); startAnimations(); };
 
-    // Project Data
     const projectData = {
-        'lluh': { title: "LLUH Impact", body: "Led the migration of complex legacy payroll into Oracle Cloud. Developed 50+ OTBI/BIP reports, reducing monthly reconciliation time by 65%." },
-        'just-energy': { title: "Just Energy VBCS", body: "Architected custom VBCS pages within the Redwood framework. Automated manual workflow entries resulting in a 40% reduction in user processing errors." }
+        'lluh': { title: "LLUH Impact", body: "Led the migration of complex legacy payroll into Oracle Cloud. Reduced monthly reconciliation time by 65% through automated validation." },
+        'just-energy': { title: "Just Energy", body: "Architected custom VBCS pages within the Redwood framework. Reduced manual input errors by 40%." }
     };
 
     function openPopup(id) {
