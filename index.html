@@ -5,89 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bhavin Kumar G | Oracle Fusion HCM Analyst</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="bg-gray-900 text-white font-sans scroll-smooth">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full bg-gray-900/80 backdrop-blur-md p-4 flex justify-between items-center z-50">
+    <h1 class="font-bold text-lg">Bhavin Kumar G</h1>
+    <div class="space-x-6 text-gray-300">
+      <a href="#about" class="hover:text-white">About</a>
+      <a href="#skills" class="hover:text-white">Skills</a>
+      <a href="#projects" class="hover:text-white">Projects</a>
+      <a href="#contact" class="hover:text-white">Contact</a>
+    </div>
+  </nav>
 
   <!-- Hero Section -->
-  <section class="text-center py-20">
-    <h1 class="text-4xl md:text-6xl font-bold">Your Name</h1>
-    <p class="mt-4 text-xl text-gray-300">Oracle Fusion HCM Analyst</p>
+  <section class="text-center py-32 px-6" id="about">
+    <h1 class="text-5xl md:text-7xl font-bold mb-6">Bhavin Kumar G</h1>
+    <p class="text-2xl text-gray-300">Oracle Fusion HCM Analyst</p>
     <p class="mt-6 max-w-2xl mx-auto text-gray-400">
-      Supporting Oracle Fusion HCM projects with expertise in OTBI, BIP Reports, Redwood UI, and HSDL.
+      Delivering scalable HCM solutions using OTBI, BIP, Redwood UI, and HSDL. Passionate about solving real business problems and optimizing HR processes.
     </p>
-  </section>
-
-  <!-- Skills -->
-  <section class="py-16 px-6">
-    <h2 class="text-3xl font-semibold text-center mb-10">Skills</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div class="bg-gray-800 p-4 rounded-xl">OTBI Reports</div>
-      <div class="bg-gray-800 p-4 rounded-xl">BIP Reports</div>
-      <div class="bg-gray-800 p-4 rounded-xl">HSDL / HDL</div>
-      <div class="bg-gray-800 p-4 rounded-xl">Redwood UI</div>
-      <div class="bg-gray-800 p-4 rounded-xl">VBCS</div>
-      <div class="bg-gray-800 p-4 rounded-xl">PeopleSoft</div>
-      <div class="bg-gray-800 p-4 rounded-xl">SQL / Reporting</div>
-      <div class="bg-gray-800 p-4 rounded-xl">Production Support</div>
+    <div class="mt-8 space-x-4">
+      <a href="#contact" class="bg-white text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">Contact Me</a>
+      <a href="#projects" class="border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-black transition">View Work</a>
     </div>
   </section>
 
-  <!-- Experience -->
-  <section class="py-16 px-6 bg-gray-800">
-    <h2 class="text-3xl font-semibold text-center mb-10">Experience</h2>
-    <div class="max-w-4xl mx-auto space-y-8">
-      <div>
-        <h3 class="text-xl font-bold">Oracle India Pvt Ltd</h3>
-        <p class="text-gray-400">Analyst | 2022 - Present</p>
-        <ul class="list-disc ml-6 mt-2 text-gray-300">
-          <li>Worked on Oracle Fusion HCM projects like LLUH & Just Energy</li>
-          <li>Developed OTBI & BIP reports</li>
-          <li>Implemented Redwood UI and VBCS customizations</li>
-          <li>Led regression testing and patch validation</li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="text-xl font-bold">IBM India Pvt Ltd</h3>
-        <p class="text-gray-400">Associate Consultant | 2019 - 2022</p>
-        <ul class="list-disc ml-6 mt-2 text-gray-300">
-          <li>Provided support for PeopleSoft HCM 9.2</li>
-          <li>Resolved production issues and developed reports</li>
-          <li>Created technical documentation and enhancements</li>
-        </ul>
-      </div>
+  <!-- Skills -->
+  <section class="py-20 px-6" id="skills">
+    <h2 class="text-3xl font-semibold text-center mb-12">Skills</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-5xl mx-auto">
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">OTBI Reports</div>
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">BIP Reports</div>
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">HSDL / HDL</div>
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">Redwood UI</div>
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">VBCS</div>
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">PeopleSoft</div>
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">SQL / Reporting</div>
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">Production Support</div>
     </div>
   </section>
 
   <!-- Projects -->
-  <section class="py-16 px-6">
-    <h2 class="text-3xl font-semibold text-center mb-10">Projects</h2>
+  <section class="py-20 px-6" id="projects">
+    <h2 class="text-3xl font-semibold text-center mb-12">Projects</h2>
     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-      <div class="bg-gray-800 p-6 rounded-2xl">
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
         <h3 class="text-xl font-bold">LLUH Cloud</h3>
-        <p class="text-gray-400 mt-2">Worked on reports, HSDL, and payroll tickets. Collaborated with clients and delivered solutions.</p>
+        <p class="text-gray-400 mt-3">Developed OTBI/BIP reports, handled payroll tickets, collaborated with clients, and delivered solutions on time.</p>
       </div>
-      <div class="bg-gray-800 p-6 rounded-2xl">
+      <div class="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
         <h3 class="text-xl font-bold">Just Energy</h3>
-        <p class="text-gray-400 mt-2">Implemented Redwood UI and VBCS customizations. Led regression testing and documentation.</p>
+        <p class="text-gray-400 mt-3">Implemented Redwood UI, VBCS customizations, and led regression testing and documentation.</p>
       </div>
     </div>
   </section>
 
-  <!-- Certifications -->
-  <section class="py-16 px-6 bg-gray-800">
-    <h2 class="text-3xl font-semibold text-center mb-10">Certifications</h2>
-    <ul class="text-center space-y-3 text-gray-300">
-      <li>Oracle Global Human Resources Cloud Certified Professional</li>
-      <li>Oracle Absence Management Cloud Certified Professional</li>
-      <li>OCI AI Foundations Associate</li>
-    </ul>
+  <!-- Experience -->
+  <section class="py-20 px-6 bg-gray-800">
+    <h2 class="text-3xl font-semibold text-center mb-12">Experience</h2>
+    <div class="max-w-4xl mx-auto space-y-8">
+      <div>
+        <h3 class="text-xl font-bold">Oracle India Pvt Ltd</h3>
+        <p class="text-gray-400">Analyst | 2022 - Present</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold">IBM India Pvt Ltd</h3>
+        <p class="text-gray-400">Associate Consultant | 2019 - 2022</p>
+      </div>
+    </div>
   </section>
 
   <!-- Contact -->
-  <section class="py-16 text-center">
+  <section class="py-20 text-center" id="contact">
     <h2 class="text-3xl font-semibold mb-6">Contact</h2>
-    <p class="text-gray-400">https://www.linkedin.com/in/bhavinkumarg/ and Email:bhavinkumar425@gmail.com</p>
+    <p class="text-gray-400">https://www.linkedin.com/in/bhavinkumarg/ and Email: bhavinkumar425@gmail.com here</p>
   </section>
 
   <footer class="text-center py-6 text-gray-500">
