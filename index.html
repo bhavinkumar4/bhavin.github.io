@@ -81,8 +81,67 @@ canvas {
   background: linear-gradient(135deg, #0f2027, #203a43);
 }
 
+/* CONTACT SECTION (UPDATED PREMIUM) */
 .contact {
   background: linear-gradient(135deg, #232526, #414345);
+}
+
+.contact-wrapper {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contact-image {
+  flex: 1;
+  min-width: 300px;
+  height: 400px;
+  border-radius: 20px;
+  background: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df') center/cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-image::after {
+  content: "Recruiters reaching out 📞";
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* FORM */
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+}
+
+.input-group {
+  position: relative;
+  margin: 20px 0;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #555;
+  color: white;
+  border-radius: 10px;
+}
+
+button {
+  padding: 12px 20px;
+  background: var(--accent);
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 /* CARDS */
@@ -102,36 +161,6 @@ canvas {
 .metrics {
   display: flex;
   gap: 20px;
-}
-
-.metric {
-  font-size: 24px;
-}
-
-/* FORM */
-.contact-form {
-  max-width: 500px;
-}
-
-.input-group {
-  position: relative;
-  margin: 20px 0;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  background: transparent;
-  border: 1px solid #555;
-  color: white;
-}
-
-button {
-  padding: 10px 20px;
-  background: var(--accent);
-  border: none;
-  color: white;
-  cursor: pointer;
 }
 
 /* POPUP */
@@ -175,34 +204,38 @@ button {
   </div>
 
   <div class="metrics">
-    <div class="metric">⚡ 70% Faster</div>
-    <div class="metric">📉 40% Cost Reduced</div>
+    <div>⚡ 70% Faster</div>
+    <div>📉 40% Cost Reduced</div>
   </div>
 </section>
 
+<!-- UPDATED CONTACT -->
 <section class="section contact">
   <h2>Contact</h2>
 
-  <form action="https://formspree.io/f/mwvnddkd" method="POST" class="contact-form">
-    <div class="input-group">
-      <input type="text" name="name" required>
-      <label>Name</label>
-    </div>
+  <div class="contact-wrapper">
+    
+    <div class="contact-image"></div>
 
-    <div class="input-group">
-      <input type="email" name="email" required>
-      <label>Email</label>
-    </div>
+    <form action="https://formspree.io/f/mwvnddkd" method="POST" class="contact-form">
+      <div class="input-group">
+        <input type="text" name="name" required placeholder="Your Name">
+      </div>
 
-    <div class="input-group">
-      <textarea name="message" required></textarea>
-      <label>Message</label>
-    </div>
+      <div class="input-group">
+        <input type="email" name="email" required placeholder="Your Email">
+      </div>
 
-    <input type="hidden" name="_subject" value="Portfolio Message 🚀">
+      <div class="input-group">
+        <textarea name="message" required placeholder="Your Message"></textarea>
+      </div>
 
-    <button type="submit">Send</button>
-  </form>
+      <input type="hidden" name="_subject" value="Portfolio Message 🚀">
+
+      <button type="submit">Send Message</button>
+    </form>
+
+  </div>
 </section>
 
 <div class="popup" id="popup">
