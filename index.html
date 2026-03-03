@@ -2,24 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bhavin | Oracle Fusion HCM Consultant</title>
+<title>Bhavin Kumar | Oracle Fusion HCM Consultant</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 
 body {
-  background:#050505;
-  color:white;
+  background:#0a0a0a;
+  color:#fff;
   overflow-x:hidden;
 }
 
-/* Smooth scroll */
-html { scroll-behavior:smooth; }
-
-/* Animated background */
+/* BRIGHT PREMIUM BACKGROUND */
 body::before {
   content:"";
   position:fixed;
@@ -27,41 +24,27 @@ body::before {
   height:200%;
   background:
     radial-gradient(circle at 20% 30%, #0071e3, transparent),
-    radial-gradient(circle at 80% 70%, #00c6ff, transparent);
-  animation: bgMove 15s infinite alternate ease-in-out;
+    radial-gradient(circle at 80% 60%, #00c6ff, transparent),
+    radial-gradient(circle at 50% 80%, #5f9cff, transparent);
+  animation:moveBg 12s infinite alternate;
   z-index:-1;
 }
 
-@keyframes bgMove {
-  0% { transform:translate(0,0); }
-  100% { transform:translate(-20%, -20%); }
+@keyframes moveBg {
+  0% {transform:translate(0,0);}
+  100% {transform:translate(-20%,-20%);}
 }
 
-/* Cursor */
-.cursor {
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  position:fixed;
-  background:#00c6ff;
-  box-shadow:0 0 30px #00c6ff;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-}
-
-/* Navbar */
+/* NAV */
 nav {
   position:fixed;
   width:100%;
   padding:20px 60px;
-  display:flex;
-  justify-content:space-between;
   backdrop-filter:blur(20px);
   background:rgba(0,0,0,0.3);
-  z-index:10;
 }
 
-/* Hero */
+/* HERO */
 .hero {
   height:100vh;
   display:flex;
@@ -71,8 +54,7 @@ nav {
 }
 
 .hero h1 {
-  font-size:70px;
-  line-height:1.1;
+  font-size:60px;
   background:linear-gradient(270deg,#fff,#aaa,#fff);
   background-size:400%;
   animation:shine 6s infinite;
@@ -86,42 +68,26 @@ nav {
   100%{background-position:0%}
 }
 
-.hero p {
-  margin-top:20px;
-  color:#aaa;
-  max-width:600px;
-}
+.hero p {margin-top:20px;color:#bbb;max-width:600px;}
 
-/* Button */
 .btn {
   margin-top:30px;
-  padding:15px 35px;
+  padding:14px 30px;
   border:none;
   border-radius:999px;
   background:linear-gradient(135deg,#0071e3,#00c6ff);
   cursor:pointer;
-  transition:.3s;
 }
 
-.btn:hover { transform:scale(1.1); }
-
-/* Sections */
+/* SECTION */
 .section {
   padding:100px 80px;
-  opacity:0;
-  transform:translateY(100px);
-  transition:all 1s ease;
 }
 
-.section.show {
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* Cards */
+/* CARDS */
 .cards {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:25px;
 }
 
@@ -133,25 +99,22 @@ nav {
   transition:.4s;
 }
 
-.card:hover {
-  transform:translateY(-10px) scale(1.05);
-}
+.card:hover {transform:translateY(-10px) scale(1.03);}
 
-/* Footer */
-footer {
-  text-align:center;
-  padding:40px;
-  color:#777;
-}
+/* HEADINGS */
+h2 {margin-bottom:30px;font-size:32px;}
+
+ul {padding-left:20px;color:#ccc;}
+li {margin-bottom:10px;}
+
+footer {text-align:center;padding:40px;color:#777;}
 </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
-
 <nav>
-  <h2>Bhavin Kumar</h2>
+  <h3>Bhavin Kumar</h3>
 </nav>
 
 <!-- HERO -->
@@ -160,63 +123,101 @@ footer {
   <h1>Reports • Redwood • HSDL • Payroll</h1>
 
   <p>
-    Helping enterprises build scalable HCM solutions, automate processes, 
-    and deliver high-impact reporting across Oracle Fusion Cloud.
+    Delivering enterprise-grade HCM solutions, automating workflows, and building impactful reporting systems across Oracle Fusion Cloud.
   </p>
 
-  <button class="btn" onclick="scrollToWork()">View My Work</button>
+  <button class="btn" onclick="document.getElementById('projects').scrollIntoView()">View My Work</button>
 </section>
 
 <!-- IMPACT -->
 <section class="section">
   <div class="cards">
-    <div class="card">📈 Delivered 30+ OTBI & BI Reports</div>
-    <div class="card">⚡ Resolved 100+ production tickets</div>
-    <div class="card">🚀 Led regression testing (24C–25B)</div>
-    <div class="card">🎯 Improved reporting efficiency</div>
+    <div class="card">📊 Delivered 30+ OTBI & BI Reports</div>
+    <div class="card">⚡ Resolved 100+ Production Tickets</div>
+    <div class="card">🚀 Led Regression Testing (24C–25B)</div>
+    <div class="card">🎯 Improved Reporting Efficiency</div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section">
+  <h2>Work Experience</h2>
+
+  <div class="card">
+    <h3>Oracle India Pvt Ltd — Analyst (2022–Present)</h3>
+    <ul>
+      <li>Delivered OTBI, BI reports & extracts based on client requirements</li>
+      <li>Implemented Redwood UI & VBCS customizations</li>
+      <li>Led regression testing and patch validation (24C–25B)</li>
+      <li>Resolved payroll & compensation issues via Oracle SRs</li>
+      <li>Created HSDL templates and conducted client walkthroughs</li>
+      <li>Collaborated with clients ensuring high satisfaction</li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <h3>IBM India Pvt Ltd — Associate Consultant (2019–2022)</h3>
+    <ul>
+      <li>Provided production support for HCM 9.2</li>
+      <li>Resolved tickets and communicated with end users</li>
+      <li>Developed reports and documentation</li>
+    </ul>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section class="section" id="work">
-  <h2 style="margin-bottom:30px;">Key Projects</h2>
+<section class="section" id="projects">
+  <h2>Key Projects</h2>
+
   <div class="cards">
     <div class="card">
-      <h3>LLUH (Oracle Fusion)</h3>
-      <p>Developed reports, handled payroll issues, worked with Oracle SRs.</p>
+      <h3>LLUH (Fusion)</h3>
+      <p>Reports, payroll tickets, Oracle SR coordination, HSDL updates.</p>
     </div>
 
     <div class="card">
       <h3>Just Energy</h3>
-      <p>Implemented Redwood UI & VBCS, led regression testing.</p>
+      <p>Redwood UI, VBCS deployment, regression testing leadership.</p>
     </div>
 
     <div class="card">
       <h3>PeopleSoft Projects</h3>
-      <p>Worked on upgrades, retrofits, and production support.</p>
+      <p>Upgrades, retrofits, PeopleCode, and production support.</p>
     </div>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section class="section">
-  <h2 style="margin-bottom:30px;">Skills & Tools</h2>
+  <h2>Skills</h2>
   <div class="cards">
-    <div class="card">OTBI & BI Publisher</div>
+    <div class="card">OTBI / BI Publisher</div>
     <div class="card">HSDL / HDL</div>
     <div class="card">Fast Formula</div>
     <div class="card">Redwood UI</div>
     <div class="card">VBCS</div>
+    <div class="card">PeopleSoft (PeopleCode, SQR)</div>
   </div>
 </section>
 
-<!-- RESUME -->
-<section class="section" style="text-align:center;">
-  <h2>Resume</h2>
-  <p>Download my latest resume</p>
-  <a href="resume.pdf" download>
-    <button class="btn">Download Resume</button>
-  </a>
+<!-- CERTIFICATIONS -->
+<section class="section">
+  <h2>Certifications</h2>
+  <div class="card">
+    <ul>
+      <li>OCI AI Foundations Associate (2023)</li>
+      <li>Oracle Global HR Cloud Certified</li>
+      <li>Oracle Absence Management Certified</li>
+    </ul>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section">
+  <h2>Education</h2>
+  <div class="card">
+    Bachelor of Engineering — CCC Institute of Technology & Management (2014–2017)
+  </div>
 </section>
 
 <!-- CONTACT -->
@@ -227,32 +228,8 @@ footer {
 </section>
 
 <footer>
-  © 2026 Bhavin Kumar
+  © 2026 Bhavin Kumar • Built with precision
 </footer>
-
-<script>
-/* Cursor */
-const cursor = document.querySelector('.cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.top = e.clientY + 'px';
-  cursor.style.left = e.clientX + 'px';
-});
-
-/* Scroll reveal */
-const sections = document.querySelectorAll('.section');
-window.addEventListener('scroll', () => {
-  sections.forEach(sec => {
-    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
-      sec.classList.add('show');
-    }
-  });
-});
-
-/* Scroll button */
-function scrollToWork() {
-  document.getElementById("work").scrollIntoView({behavior: "smooth"});
-}
-</script>
 
 </body>
 </html>
