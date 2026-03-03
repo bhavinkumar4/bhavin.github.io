@@ -81,45 +81,58 @@ nav {
   background: linear-gradient(135deg, #141e30, #243b55);
 }
 
-/* CONTACT */
+/* CONTACT (🔥 PREMIUM COVER STYLE) */
 .contact {
-  background: linear-gradient(135deg, #232526, #414345);
-}
-
-.contact-wrapper {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.contact-image {
-  flex: 1;
-  min-width: 300px;
-  height: 400px;
-  border-radius: 20px;
-  background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a') center/cover;
   position: relative;
+  background: url('https://images.unsplash.com/photo-1560250097-0b93528c311a') center/cover no-repeat;
 }
 
-.contact-image::after {
-  content: "Recruiters reviewing profile 📞";
+/* dark overlay */
+.contact::before {
+  content: "";
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(0,0,0,0.6);
-  padding: 10px;
-  border-radius: 10px;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
 }
 
-/* FORM */
+/* content above overlay */
+.contact-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+/* glass form */
+.contact-form {
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+.contact h2 {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* INPUT */
 input, textarea {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
   border-radius: 10px;
   border: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
 }
 
+/* BUTTON */
 button {
   padding: 12px;
   width: 100%;
@@ -127,6 +140,7 @@ button {
   border: none;
   color: white;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 /* POPUP */
@@ -166,20 +180,20 @@ button {
 <div class="card">
 <h3>Oracle India Pvt Ltd (2022 - Present)</h3>
 <p>
-• Worked on LLUH & Just Energy projects  
-• Built OTBI, BIP reports & HSDL solutions  
-• Implemented Redwood UI & VBCS customizations  
-• Led regression testing & patch validation (24C → 25B)  
-• Client interaction + SR coordination  
+• LLUH & Just Energy Cloud Projects  
+• OTBI, BIP Reports, HSDL  
+• Redwood UI + VBCS  
+• Regression Testing + Patch Updates (24C–25B)  
+• Client Calls + SR Handling  
 </p>
 </div>
 
 <div class="card">
 <h3>IBM India Pvt Ltd (2019 - 2022)</h3>
 <p>
-• Supported PeopleSoft HCM 9.2 production  
-• Developed PS Queries, SQR reports  
-• Handled tickets & documentation  
+• PeopleSoft HCM 9.2 Support  
+• PS Query, SQR Reports  
+• Ticket Resolution + Documentation  
 </p>
 </div>
 
@@ -196,29 +210,29 @@ button {
 
 <div class="card">
 <h3>Just Energy</h3>
-<p>Redwood + VBCS + Testing Automation</p>
+<p>Redwood + VBCS + Automation</p>
 </div>
 
 <div class="card">
 <h3>BJC Healthcare</h3>
-<p>PeopleSoft Upgrade (8.57 → 8.60)</p>
+<p>PeopleSoft Upgrade</p>
 </div>
 
 </section>
 
 <!-- CONTACT -->
 <section class="section contact">
-<h2>Contact</h2>
+<h2>Contact Me</h2>
 
-<div class="contact-wrapper">
+<div class="contact-content">
 
-<div class="contact-image"></div>
-
-<form action="https://formspree.io/f/mwvnddkd" method="POST">
+<form action="https://formspree.io/f/mwvnddkd" method="POST" class="contact-form">
 
 <input type="text" name="name" placeholder="Your Name" required>
 <input type="email" name="email" placeholder="Your Email" required>
 <textarea name="message" placeholder="Your Message"></textarea>
+
+<input type="hidden" name="_subject" value="Portfolio Message 🚀">
 
 <button type="submit">Send Message</button>
 
@@ -231,7 +245,7 @@ button {
 <div class="popup" id="popup">
 <h2>Impact</h2>
 <p><b>Before:</b> Manual reporting delays</p>
-<p><b>After:</b> Automated OTBI/BIP delivery 🚀</p>
+<p><b>After:</b> Automated reporting 🚀</p>
 <button onclick="closePopup()">Close</button>
 </div>
 
