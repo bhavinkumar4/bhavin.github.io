@@ -3,280 +3,253 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhavin Kumar | Portfolio</title>
+<title>Bhavin Kumar | Elite Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+:root{
+  --bg:#020617;
+  --text:#e5e7eb;
+  --accent:#6366f1;
 }
 
-body {
-  background: linear-gradient(135deg, #0f172a, #020617);
-  color: white;
-  scroll-behavior: smooth;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* CANVAS BACKGROUND */
+#bgCanvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
 }
 
 /* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-.glow-text {
-  font-size: 3rem;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa);
-  -webkit-background-clip: text;
-  color: transparent;
+.typing{
+  font-size:3rem;
 }
 
-.hero-desc {
-  margin-top: 15px;
-  color: #cbd5f5;
-  max-width: 600px;
+/* PROJECT CARD */
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  padding:20px;
+  border-radius:20px;
+  margin:20px;
+  cursor:pointer;
+  transition:.3s;
 }
 
-.btn {
-  padding: 10px 20px;
-  margin: 10px;
-  border-radius: 20px;
-  text-decoration: none;
-  display: inline-block;
+.card:hover{
+  transform:scale(1.05);
 }
 
-.primary {
-  background: #6366f1;
-  color: white;
+/* MODAL */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
 }
 
-.secondary {
-  border: 1px solid white;
-  color: white;
+.modal.active{
+  opacity:1;
+  pointer-events:auto;
 }
 
-/* METRICS */
-.metrics {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 60px;
-}
-
-.metric-card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 20px;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.metric-card:hover {
-  transform: scale(1.1);
-}
-
-/* EXPERIENCE */
-.experience {
-  padding: 60px;
-}
-
-.exp-card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 15px;
-}
-
-.exp-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: 0.4s;
-}
-
-.exp-card:hover .exp-details {
-  max-height: 200px;
-}
-
-/* PROJECTS */
-.projects {
-  padding: 60px;
-}
-
-.project-card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 15px;
-  transition: 0.3s;
-}
-
-.project-card:hover {
-  transform: scale(1.05);
-}
-
-.project-hover {
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.project-card:hover .project-hover {
-  opacity: 1;
+.modal-content{
+  background:#111;
+  padding:30px;
+  border-radius:20px;
+  max-width:500px;
 }
 
 /* CONTACT */
-.contact {
-  padding: 60px;
-  text-align: center;
+form{
+  margin-top:40px;
 }
 
-input, textarea {
-  width: 80%;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-  border: none;
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:10px;
+  border:none;
 }
 
-button {
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  background: #6366f1;
-  color: white;
-  cursor: pointer;
+button{
+  padding:10px;
+  width:100%;
+  border:none;
+  border-radius:10px;
+  background:var(--accent);
+  color:white;
+}
+
+/* SECTION */
+section{
+  padding:80px 10%;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
+<canvas id="bgCanvas"></canvas>
+
 <section class="hero">
-  <div>
-    <h1 class="glow-text">Bhavin Kumar</h1>
-    <h2 class="typing"></h2>
-
-    <p class="hero-desc">
-      Oracle Fusion HCM Analyst specializing in OTBI, BIP Reports, Redwood UI & HSDL.
-    </p>
-
-    <a href="#projects" class="btn primary">View Projects</a>
-  </div>
+  <h1 class="typing" id="typing"></h1>
+  <p>Oracle Fusion HCM | OTBI | Redwood | HSDL</p>
 </section>
 
-<!-- METRICS -->
-<section class="metrics">
-  <div class="metric-card"><h2>10+</h2><p>Reports Delivered</p></div>
-  <div class="metric-card"><h2>2+</h2><p>Cloud Projects</p></div>
-  <div class="metric-card"><h2>100%</h2><p>On-time Delivery</p></div>
-  <div class="metric-card"><h2>0</h2><p>Escalations</p></div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="experience">
-  <h2>Experience</h2>
-
-  <div class="exp-card">
-    <h3>Oracle India Pvt Ltd (2022 - Present)</h3>
-    <div class="exp-details">
-      <ul>
-        <li>OTBI & BIP Reports Development</li>
-        <li>Redwood UI Implementation</li>
-        <li>Regression Testing Leadership</li>
-        <li>Handled Oracle SRs</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="exp-card">
-    <h3>IBM India Pvt Ltd (2019 - 2022)</h3>
-    <div class="exp-details">
-      <ul>
-        <li>Production Support</li>
-        <li>PS Query & Report Development</li>
-        <li>Client Communication</li>
-      </ul>
-    </div>
-  </div>
-
-</section>
-
-<!-- PROJECTS -->
-<section class="projects" id="projects">
+<section>
   <h2>Projects</h2>
 
-  <div class="project-card">
-    <h3>LLUH Cloud Project</h3>
-    <div class="project-hover">
-      <p><b>Problem:</b> Reporting gaps</p>
-      <p><b>Solution:</b> OTBI & BIP reports</p>
-      <p><b>Impact:</b> Improved client efficiency</p>
-    </div>
+  <div class="card" onclick="openModal('LLUH Project','Improved reporting efficiency by delivering OTBI & BIP reports. Reduced manual work.')">
+    LLUH Cloud Project
   </div>
 
-  <div class="project-card">
-    <h3>Just Energy</h3>
-    <div class="project-hover">
-      <p><b>Problem:</b> UI modernization</p>
-      <p><b>Solution:</b> Redwood UI</p>
-      <p><b>Impact:</b> Better user experience</p>
-    </div>
+  <div class="card" onclick="openModal('Just Energy','Implemented Redwood UI. Improved UX and reduced navigation complexity.')">
+    Just Energy Project
   </div>
-
 </section>
 
-<!-- CONTACT -->
-<section class="contact">
-  <h2>Contact Me</h2>
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3 id="modalTitle"></h3>
+    <p id="modalText"></p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<section>
+  <h2>Contact</h2>
 
   <form action="https://formspree.io/f/mwvnddkd" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required><br>
-    <input type="email" name="email" placeholder="Your Email" required><br>
-    <textarea name="message" placeholder="Message" required></textarea><br>
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="message" placeholder="Message"></textarea>
     <button type="submit">Send</button>
   </form>
 </section>
 
-<!-- TYPING SCRIPT -->
 <script>
-const roles = [
-  "Oracle Fusion HCM Analyst",
-  "OTBI & BIP Specialist",
-  "Redwood UI Developer",
-  "PeopleSoft Consultant"
+/* TYPING */
+const roles=[
+"Oracle Fusion HCM Analyst",
+"Redwood UI Developer",
+"OTBI & BIP Specialist"
 ];
 
-let i = 0, j = 0, current = "", isDeleting = false;
+let i=0,j=0,current="",del=false;
 
-function type() {
-  const el = document.querySelector(".typing");
+function type(){
+  let el=document.getElementById("typing");
 
-  if (i < roles.length) {
-    if (!isDeleting && j <= roles[i].length) {
-      current = roles[i].substring(0, j++);
-    } else if (isDeleting && j >= 0) {
-      current = roles[i].substring(0, j--);
+  if(i<roles.length){
+    if(!del && j<=roles[i].length){
+      current=roles[i].substring(0,j++);
+    }else if(del && j>=0){
+      current=roles[i].substring(0,j--);
     }
 
-    el.textContent = current;
+    el.textContent=current;
 
-    if (j === roles[i].length) isDeleting = true;
-    if (j === 0 && isDeleting) {
-      isDeleting = false;
-      i++;
-    }
-  } else {
-    i = 0;
-  }
+    if(j===roles[i].length) del=true;
+    if(j===0 && del){ del=false; i++; }
+  } else i=0;
 
-  setTimeout(type, isDeleting ? 50 : 100);
+  setTimeout(type,80);
+}
+type();
+
+/* MODAL */
+function openModal(title,text){
+  document.getElementById("modal").classList.add("active");
+  document.getElementById("modalTitle").innerText=title;
+  document.getElementById("modalText").innerText=text;
 }
 
-type();
+function closeModal(){
+  document.getElementById("modal").classList.remove("active");
+}
+
+/* ANALYTICS (basic) */
+fetch("https://api.countapi.xyz/hit/bhavin-portfolio/visits");
+
+/* THREE JS PARTICLES */
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+
+const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('bgCanvas'),alpha:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+
+const particlesGeometry=new THREE.BufferGeometry();
+const count=1000;
+
+const positions=new Float32Array(count*3);
+
+for(let i=0;i<count*3;i++){
+  positions[i]=(Math.random()-0.5)*5;
+}
+
+particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
+
+const particlesMaterial=new THREE.PointsMaterial({
+  size:0.01,
+  color:0x6366f1
+});
+
+const particles=new THREE.Points(particlesGeometry,particlesMaterial);
+scene.add(particles);
+
+camera.position.z=2;
+
+function animate(){
+  requestAnimationFrame(animate);
+  particles.rotation.y+=0.0005;
+  renderer.render(scene,camera);
+}
+
+animate();
+
+/* RESIZE */
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
 </script>
 
 </body>
